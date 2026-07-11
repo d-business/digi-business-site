@@ -1,0 +1,46 @@
+---
+// Save as: src/pages/blog/[...slug].astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BaseLayout title={`${post.data.title} | Digital Business`} description={post.data.description}>
+  <article class="container post">
+    <p class="post__meta">
+      {post.data.pubDate.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}
+      · {post.data.author}
+    </p>
+    <h1>{post.data.title}</h1>
+    <div class="post__content">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .post {
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-xl);
+    max-width: 720px;
+  }
+
+  .post__meta {
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+  }
+
+  .post__content :global(h2) {
+    margin-top: var(--space-lg);
+  }
+</style>

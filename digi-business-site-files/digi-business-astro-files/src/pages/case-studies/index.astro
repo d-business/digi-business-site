@@ -1,0 +1,78 @@
+---
+// Save as: src/pages/case-studies/index.astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allCaseStudies = await getCollection('caseStudies', ({ data }) => !data.draft);
+const caseStudies = allCaseStudies.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout
+  title="Case Studies | Digital Business"
+  description="Real results for outdoor leisure businesses working with Digital Business."
+>
+  <section class="container section-header">
+    <p class="eyebrow">Case Studies</p>
+    <h1>Results for outdoor leisure businesses</h1>
+  </section>
+
+  <section class="container">
+    {caseStudies.length === 0 ? (
+      <p>Case studies coming soon. Check back shortly.</p>
+    ) : (
+      <ul class="post-list">
+        {caseStudies.map((study) => (
+          <li>
+            <a href={`/case-studies/${study.id}/`}>
+              <h2>{study.data.title}</h2>
+              <p class="post-list__client">{study.data.client}</p>
+              <p>{study.data.summary}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+  </section>
+</BaseLayout>
+
+<style>
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-accent);
+  }
+
+  .section-header {
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-md);
+  }
+
+  .post-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-md);
+  }
+
+  .post-list li a {
+    display: block;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--space-md);
+    color: var(--color-text);
+  }
+
+  .post-list li a:hover h2 {
+    color: var(--color-accent);
+  }
+
+  .post-list__client {
+    color: var(--color-accent);
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+  }
+</style>

@@ -1,0 +1,69 @@
+---
+// Save as: src/layouts/BaseLayout.astro
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, 'https://digi-business.co.uk');
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'Digital Business',
+  url: 'https://digi-business.co.uk',
+  logo: 'https://digi-business.co.uk/images/logo.webp',
+  description: 'Specialist digital marketing agency for the outdoor leisure vehicle market.',
+  email: 'will@digi-business.co.uk',
+  areaServed: 'GB',
+  knowsAbout: [
+    'SEO',
+    'Google Ads',
+    'Meta Ads',
+    'Email Marketing',
+    'Caravans',
+    'Motorhomes',
+    'Outdoor Leisure',
+  ],
+  founder: {
+    '@type': 'Person',
+    name: 'Will Hawkins',
+  },
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

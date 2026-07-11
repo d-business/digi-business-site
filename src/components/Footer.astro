@@ -1,0 +1,48 @@
+---
+// Save as: src/components/Footer.astro
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <p class="site-footer__tagline">Digital Business — Specialist digital marketing for the outdoor leisure vehicle market.</p>
+    <nav aria-label="Footer">
+      <a href="mailto:will@digi-business.co.uk">will@digi-business.co.uk</a>
+      <span aria-hidden="true"> · </span>
+      <a href="/services">Services</a>
+      <span aria-hidden="true"> · </span>
+      <a href="/about">About</a>
+      <span aria-hidden="true"> · </span>
+      <a href="/blog">Insights</a>
+    </nav>
+    <p class="site-footer__copyright">&copy; {year} Digital Business. All rights reserved.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: var(--color-forest);
+    color: var(--color-stone);
+    padding: var(--space-lg) 0;
+    margin-top: var(--space-2xl);
+  }
+
+  .site-footer a {
+    color: var(--color-stone);
+    text-decoration: underline;
+  }
+
+  .site-footer a:hover {
+    color: var(--color-moss);
+  }
+
+  .site-footer__inner {
+    text-align: center;
+  }
+
+  .site-footer__copyright {
+    margin-top: var(--space-sm);
+    font-size: 0.85rem;
+    opacity: 0.8;
+  }
+</style>

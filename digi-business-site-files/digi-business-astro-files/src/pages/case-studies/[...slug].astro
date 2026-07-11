@@ -1,0 +1,70 @@
+---
+// Save as: src/pages/case-studies/[...slug].astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const caseStudies = await getCollection('caseStudies', ({ data }) => !data.draft);
+  return caseStudies.map((study) => ({
+    params: { slug: study.id },
+    props: { study },
+  }));
+}
+
+const { study } = Astro.props;
+const { Content } = await render(study);
+---
+
+<BaseLayout title={`${study.data.title} | Digital Business`} description={study.data.summary}>
+  <article class="container post">
+    <p class="post__client">{study.data.client}</p>
+    <h1>{study.data.title}</h1>
+    <p class="post__meta">
+      {study.data.pubDate.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}
+    </p>
+
+    {study.data.results.length > 0 && (
+      <ul class="post__results">
+        {study.data.results.map((result) => (
+          <li>{result}</li>
+        ))}
+      </ul>
+    )}
+
+    <div class="post__content">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .post {
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-xl);
+    max-width: 720px;
+  }
+
+  .post__client {
+    color: var(--color-accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+  }
+
+  .post__meta {
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+  }
+
+  .post__results {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--space-md) var(--space-md) var(--space-md) 2rem;
+    margin: var(--space-md) 0;
+  }
+
+  .post__content :global(h2) {
+    margin-top: var(--space-lg);
+  }
+</style>

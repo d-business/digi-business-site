@@ -1,0 +1,94 @@
+---
+export const prerender = true;
+// Save as: src/pages/about.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const team = [
+  {
+    name: 'Will Hawkins',
+    role: 'Founder — SEO, Strategy and Technology',
+    bio: '17 years building digital presence for outdoor leisure businesses. Owns technical SEO, overall strategy, and the technology infrastructure that powers our AI-driven reporting and automation.',
+  },
+  {
+    name: 'Lynne Cullen',
+    role: 'Partner — SEO, Paid Media, Email and Social',
+    bio: 'Specialist in PPC campaign management across Google and Meta, email marketing strategy, and social media. Brings precision and performance focus to every campaign she manages.',
+  },
+];
+---
+
+<BaseLayout
+  title="About Digital Business | 17 Years in Outdoor Leisure Digital Marketing"
+  description="Digital Business is a specialist digital marketing agency with 17 years of exclusive focus on the outdoor leisure vehicle market. Founded by Will Hawkins."
+>
+  <section class="container section-header">
+    <p class="eyebrow">About us</p>
+    <h1>A specialist agency built on deep market knowledge</h1>
+  </section>
+
+  <section class="container">
+    <p class="eyebrow">Our story</p>
+    <h2>Why we chose one market and stuck with it</h2>
+    <p>
+      Digital Business was founded on a simple premise: that deep niche expertise delivers better results than broad generalism. While other agencies chased every client in every sector, we chose to go deep in one.
+    </p>
+    <p>
+      After 17 years working exclusively in the outdoor leisure vehicle market, we understand this sector at a level no generalist agency can match. We know the brands, the buyers, the seasonality, the competition, and the margins.
+    </p>
+    <p>
+      That knowledge is built from years of running campaigns, analysing data, and delivering results for businesses selling caravans, motorhomes, campervans, and accessories across the UK.
+    </p>
+  </section>
+
+  <section class="container">
+    <p class="eyebrow">The team</p>
+    <div class="team-grid">
+      {team.map((person) => (
+        <div class="team-card">
+          <h3>{person.name}</h3>
+          <p class="team-card__role">{person.role}</p>
+          <p>{person.bio}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-accent);
+  }
+
+  .section-header {
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-md);
+  }
+
+  .container {
+    padding-top: var(--space-lg);
+    padding-bottom: var(--space-lg);
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-md);
+  }
+
+  .team-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--space-md);
+  }
+
+  .team-card__role {
+    color: var(--color-accent);
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+</style>

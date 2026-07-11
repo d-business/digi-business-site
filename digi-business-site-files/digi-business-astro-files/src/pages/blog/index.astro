@@ -1,0 +1,79 @@
+---
+// Save as: src/pages/blog/index.astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const posts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout
+  title="Digital Marketing Insights for Outdoor Leisure Businesses | Digital Business"
+  description="Expert digital marketing articles, case studies and insights for the outdoor leisure vehicle market from Digital Business."
+>
+  <section class="container section-header">
+    <p class="eyebrow">Insights</p>
+    <h1>Digital marketing intelligence for outdoor leisure businesses</h1>
+  </section>
+
+  <section class="container">
+    {posts.length === 0 ? (
+      <p>Articles and insights coming soon. Check back shortly.</p>
+    ) : (
+      <ul class="post-list">
+        {posts.map((post) => (
+          <li>
+            <a href={`/blog/${post.id}/`}>
+              <h2>{post.data.title}</h2>
+              <p>{post.data.description}</p>
+              <p class="post-list__meta">
+                {post.data.pubDate.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}
+              </p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+  </section>
+</BaseLayout>
+
+<style>
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-accent);
+  }
+
+  .section-header {
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-md);
+  }
+
+  .post-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-md);
+  }
+
+  .post-list li a {
+    display: block;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--space-md);
+    color: var(--color-text);
+  }
+
+  .post-list li a:hover h2 {
+    color: var(--color-accent);
+  }
+
+  .post-list__meta {
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    margin: 0;
+  }
+</style>

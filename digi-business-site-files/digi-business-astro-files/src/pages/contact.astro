@@ -1,0 +1,97 @@
+---
+// Save as: src/pages/contact.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Contact Digital Business | Outdoor Leisure Digital Marketing Agency"
+  description="Get in touch with Digital Business. We work with outdoor leisure vehicle businesses turning over £1m-£10m who want a specialist digital growth partner."
+>
+  <section class="container section-header">
+    <p class="eyebrow">Get in touch</p>
+    <h1>Let's talk about your business</h1>
+  </section>
+
+  <section class="container">
+    <p class="eyebrow">Contact us</p>
+    <h2>We work with a select number of clients</h2>
+    <p>
+      If you run an outdoor leisure vehicle business turning over £1m to £10m and want a specialist digital growth partner, we would like to hear from you.
+    </p>
+    <p>
+      Email us directly: <a href="mailto:will@digi-business.co.uk">will@digi-business.co.uk</a>
+    </p>
+
+    <h3>Send us a message</h3>
+    <!--
+      NOTE: action="/api/contact" is a placeholder. This needs a live endpoint
+      before the form works — see task #7 (deploy) for the Cloudflare Workers
+      send_email wiring. Do not treat this as functional until that's built.
+    -->
+    <form class="contact-form" method="POST" action="/api/contact">
+      <label>
+        Your name
+        <input type="text" name="name" required />
+      </label>
+      <label>
+        Email address
+        <input type="email" name="email" required />
+      </label>
+      <label>
+        Business name
+        <input type="text" name="business" />
+      </label>
+      <label>
+        Message
+        <textarea name="message" rows="5" required></textarea>
+      </label>
+      <button type="submit" class="button">Send message</button>
+    </form>
+  </section>
+</BaseLayout>
+
+<style>
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-accent);
+  }
+
+  .section-header {
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-md);
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    max-width: 520px;
+    margin-top: var(--space-md);
+  }
+
+  .contact-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-weight: 700;
+    color: var(--color-forest);
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    padding: 0.6rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background-color: var(--color-surface);
+    color: var(--color-text);
+  }
+
+  .contact-form button {
+    align-self: flex-start;
+  }
+</style>
