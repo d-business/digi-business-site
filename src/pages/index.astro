@@ -44,25 +44,26 @@ const services = [
     </div>
   </section>
 
-  <section class="section container">
-    <p class="eyebrow">Why Digital Business</p>
-    <h2>17 years. One market. Unmatched expertise.</h2>
-    <p>
-      Most digital agencies claim they can work with any business. We chose differently. For nearly two decades we have worked exclusively in the outdoor leisure vehicle sector.
-    </p>
-    <p>
-      That depth means we understand the buying cycles, seasonal patterns, audience psychology, and competitive landscape better than any generalist agency ever could.
-    </p>
-    <a href="/about">About us</a>
-  </section>
-
-  <section class="section container stats">
-    {stats.map((stat) => (
-      <div class="stat">
-        <p class="stat__value">{stat.value}</p>
-        <p class="stat__label">{stat.label}</p>
-      </div>
-    ))}
+  <section class="section container why">
+    <div class="why__text">
+      <p class="eyebrow">Why Digital Business</p>
+      <h2>17 years. One market. Unmatched expertise.</h2>
+      <p>
+        Most digital agencies claim they can work with any business. We chose differently. For nearly two decades we have worked exclusively in the outdoor leisure vehicle sector.
+      </p>
+      <p>
+        That depth means we understand the buying cycles, seasonal patterns, audience psychology, and competitive landscape better than any generalist agency ever could.
+      </p>
+      <a href="/about" class="button button--outline-dark">About us</a>
+    </div>
+    <div class="why__stats">
+      {stats.map((stat, index) => (
+        <div class:list={['stat-card', { 'stat-card--highlight': index === stats.length - 1 }]}>
+          <p class="stat-card__value">{stat.value}</p>
+          <p class="stat-card__label">{stat.label}</p>
+        </div>
+      ))}
+    </div>
   </section>
 
   <section class="section container">
@@ -134,27 +135,51 @@ const services = [
     padding-bottom: var(--space-xl);
   }
 
-  .stats {
+  .why {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    align-items: start;
+  }
+
+  .why__stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-md);
-    text-align: center;
+  }
+
+  .stat-card {
     background-color: var(--color-surface);
     border-radius: var(--radius);
-    padding: var(--space-lg);
+    padding: var(--space-md);
   }
 
-  .stat__value {
+  .stat-card__value {
     font-family: var(--font-display);
-    font-size: 2.5rem;
-    color: var(--color-accent);
-    margin-bottom: 0.25rem;
+    font-size: 2rem;
+    color: var(--color-forest);
+    margin: 0 0 0.25rem;
   }
 
-  .stat__label {
+  .stat-card__label {
     font-size: 0.9rem;
     color: var(--color-text-muted);
     margin: 0;
+  }
+
+  .stat-card--highlight {
+    background-color: var(--color-forest);
+  }
+
+  .stat-card--highlight .stat-card__value,
+  .stat-card--highlight .stat-card__label {
+    color: var(--color-moss);
+  }
+
+  @media (max-width: 720px) {
+    .why {
+      grid-template-columns: 1fr;
+    }
   }
 
   .services-grid {
@@ -202,5 +227,16 @@ const services = [
   .button--outline-light:hover {
     background-color: var(--color-stone);
     color: var(--color-forest);
+  }
+
+  .button--outline-dark {
+    background-color: transparent;
+    color: var(--color-forest);
+    border: 2px solid var(--color-forest);
+  }
+
+  .button--outline-dark:hover {
+    background-color: var(--color-forest);
+    color: #ffffff;
   }
 </style>
