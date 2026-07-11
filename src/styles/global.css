@@ -3,21 +3,9 @@
    Plain CSS, no Tailwind. Save this as: src/styles/global.css
    ========================================================================== */
 
-@font-face {
-  font-family: 'Fraunces';
-  src: url('/fonts/Fraunces.woff2') format('woff2');
-  font-weight: 300 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'DM Sans';
-  src: url('/fonts/DMSans.woff2') format('woff2');
-  font-weight: 400 700;
-  font-style: normal;
-  font-display: swap;
-}
+/* Fraunces (headings) and DM Sans (body) are loaded via Google Fonts —
+   see the <link> tags in src/layouts/BaseLayout.astro. No local font
+   files needed. */
 
 :root {
   /* Brand colours */
