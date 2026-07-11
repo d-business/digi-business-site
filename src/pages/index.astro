@@ -30,15 +30,17 @@ const services = [
   title="Digital Business | Outdoor Leisure Digital Marketing Specialists"
   description="Specialist digital marketing for outdoor leisure businesses. 17 years in caravans, motorhomes and campervans. SEO, Ads and automation."
 >
-  <section class="hero container">
-    <p class="eyebrow">Outdoor Leisure Vehicle Market</p>
-    <h1>Digital growth for outdoor leisure businesses that mean business</h1>
-    <p class="hero__lead">
-      17 years. One niche. We know your market, your customers, and what actually moves the needle. No generalists. No guesswork.
-    </p>
-    <div class="hero__actions">
-      <a href="/contact" class="button">Start the conversation</a>
-      <a href="/services" class="button button--outline">See our services</a>
+  <section class="hero">
+    <div class="container hero__inner">
+      <p class="eyebrow eyebrow--hero">Outdoor Leisure Vehicle Market</p>
+      <h1 class="hero__heading">Digital growth for outdoor leisure businesses that mean business</h1>
+      <p class="hero__lead">
+        17 years. One niche. We know your market, your customers, and what actually moves the needle. No generalists. No guesswork.
+      </p>
+      <div class="hero__actions">
+        <a href="/contact" class="button">Start the conversation</a>
+        <a href="/services" class="button button--outline button--outline-light">See our services</a>
+      </div>
     </div>
   </section>
 
@@ -97,14 +99,27 @@ const services = [
   }
 
   .hero {
+    background-color: var(--color-forest);
+  }
+
+  .hero__inner {
     padding-top: var(--space-2xl);
     padding-bottom: var(--space-xl);
     max-width: 800px;
   }
 
+  .eyebrow--hero {
+    color: var(--color-moss);
+  }
+
+  .hero__heading {
+    color: var(--color-stone);
+  }
+
   .hero__lead {
     font-size: 1.15rem;
     max-width: 640px;
+    color: var(--color-stone);
   }
 
   .hero__actions {
@@ -177,5 +192,15 @@ const services = [
   .button--outline:hover {
     background-color: var(--color-accent);
     color: #ffffff;
+  }
+
+  .button--outline-light {
+    color: var(--color-stone);
+    border-color: var(--color-stone);
+  }
+
+  .button--outline-light:hover {
+    background-color: var(--color-stone);
+    color: var(--color-forest);
   }
 </style>
