@@ -77,7 +77,7 @@ const services = [
         </div>
       ))}
     </div>
-    <a href="/services">See all services and pricing</a>
+    <a href="/services" class="button button--dark">See all services and pricing</a>
   </section>
 
   <section class="section section--cta container">
@@ -190,10 +190,8 @@ const services = [
   }
 
   .service-card {
-    background-color: var(--color-surface);
-    border-radius: var(--radius);
-    padding: var(--space-md);
-    border: 1px solid var(--color-border);
+    padding-top: var(--space-sm);
+    border-top: 2px solid var(--color-border);
   }
 
   .section--cta {
@@ -237,6 +235,16 @@ const services = [
 
   .button--outline-dark:hover {
     background-color: var(--color-forest);
+    color: #ffffff;
+  }
+
+  .button--dark {
+    background-color: var(--color-forest);
+    color: #ffffff;
+  }
+
+  .button--dark:hover {
+    background-color: var(--color-sage);
     color: #ffffff;
   }
 </style>
