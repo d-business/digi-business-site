@@ -15,7 +15,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <section class="container">
+  <section class="section container">
     <p class="eyebrow">Contact us</p>
     <h2>We work with a select number of clients</h2>
     <p>
@@ -78,6 +78,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .hero__heading {
     color: var(--color-stone);
     max-width: 800px;
+  }
+
+  .section {
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-xl);
   }
 
   .contact-form {

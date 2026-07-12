@@ -19,7 +19,7 @@ const posts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.
     </div>
   </section>
 
-  <section class="container">
+  <section class="section container">
     {posts.length === 0 ? (
       <p>Articles and insights coming soon. Check back shortly.</p>
     ) : (
@@ -65,6 +65,11 @@ const posts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.
   .hero__heading {
     color: var(--color-stone);
     max-width: 800px;
+  }
+
+  .section {
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-xl);
   }
 
   .post-list {

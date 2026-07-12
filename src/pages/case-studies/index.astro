@@ -19,7 +19,7 @@ const caseStudies = allCaseStudies.sort((a, b) => b.data.pubDate.valueOf() - a.d
     </div>
   </section>
 
-  <section class="container">
+  <section class="section container">
     {caseStudies.length === 0 ? (
       <p>Case studies coming soon. Check back shortly.</p>
     ) : (
@@ -63,6 +63,11 @@ const caseStudies = allCaseStudies.sort((a, b) => b.data.pubDate.valueOf() - a.d
   .hero__heading {
     color: var(--color-stone);
     max-width: 800px;
+  }
+
+  .section {
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-xl);
   }
 
   .post-list {
