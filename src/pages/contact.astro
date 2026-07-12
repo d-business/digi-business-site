@@ -8,9 +8,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   title="Contact Digital Business | Outdoor Leisure Digital Marketing Agency"
   description="Get in touch with Digital Business. We work with outdoor leisure vehicle businesses turning over £1m-£10m who want a specialist digital growth partner."
 >
-  <section class="container section-header">
-    <p class="eyebrow">Get in touch</p>
-    <h1>Let's talk about your business</h1>
+  <section class="hero">
+    <div class="container hero__inner">
+      <p class="eyebrow eyebrow--hero">Get in touch</p>
+      <h1 class="hero__heading">Let's talk about your business</h1>
+    </div>
   </section>
 
   <section class="container">
@@ -60,9 +62,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     color: var(--color-accent);
   }
 
-  .section-header {
+  .hero {
+    background-color: var(--color-forest);
+  }
+
+  .hero__inner {
     padding-top: var(--space-2xl);
-    padding-bottom: var(--space-md);
+    padding-bottom: var(--space-xl);
+    max-width: 800px;
+  }
+
+  .eyebrow--hero {
+    color: var(--color-moss);
+  }
+
+  .hero__heading {
+    color: var(--color-stone);
   }
 
   .contact-form {

@@ -12,9 +12,11 @@ const posts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.
   title="Digital Marketing Insights for Outdoor Leisure Businesses | Digital Business"
   description="Expert digital marketing articles, case studies and insights for the outdoor leisure vehicle market from Digital Business."
 >
-  <section class="container section-header">
-    <p class="eyebrow">Insights</p>
-    <h1>Digital marketing intelligence for outdoor leisure businesses</h1>
+  <section class="hero">
+    <div class="container hero__inner">
+      <p class="eyebrow eyebrow--hero">Insights</p>
+      <h1 class="hero__heading">Digital marketing intelligence for outdoor leisure businesses</h1>
+    </div>
   </section>
 
   <section class="container">
@@ -47,9 +49,22 @@ const posts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.
     color: var(--color-accent);
   }
 
-  .section-header {
+  .hero {
+    background-color: var(--color-forest);
+  }
+
+  .hero__inner {
     padding-top: var(--space-2xl);
-    padding-bottom: var(--space-md);
+    padding-bottom: var(--space-xl);
+    max-width: 800px;
+  }
+
+  .eyebrow--hero {
+    color: var(--color-moss);
+  }
+
+  .hero__heading {
+    color: var(--color-stone);
   }
 
   .post-list {

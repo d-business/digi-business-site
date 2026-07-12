@@ -12,9 +12,11 @@ const caseStudies = allCaseStudies.sort((a, b) => b.data.pubDate.valueOf() - a.d
   title="Case Studies | Digital Business"
   description="Real results for outdoor leisure businesses working with Digital Business."
 >
-  <section class="container section-header">
-    <p class="eyebrow">Case Studies</p>
-    <h1>Results for outdoor leisure businesses</h1>
+  <section class="hero">
+    <div class="container hero__inner">
+      <p class="eyebrow eyebrow--hero">Case Studies</p>
+      <h1 class="hero__heading">Results for outdoor leisure businesses</h1>
+    </div>
   </section>
 
   <section class="container">
@@ -45,9 +47,22 @@ const caseStudies = allCaseStudies.sort((a, b) => b.data.pubDate.valueOf() - a.d
     color: var(--color-accent);
   }
 
-  .section-header {
+  .hero {
+    background-color: var(--color-forest);
+  }
+
+  .hero__inner {
     padding-top: var(--space-2xl);
-    padding-bottom: var(--space-md);
+    padding-bottom: var(--space-xl);
+    max-width: 800px;
+  }
+
+  .eyebrow--hero {
+    color: var(--color-moss);
+  }
+
+  .hero__heading {
+    color: var(--color-stone);
   }
 
   .post-list {

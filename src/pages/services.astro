@@ -49,9 +49,11 @@ const tiers = [
   title="Digital Marketing Services for Outdoor Leisure Businesses | Digital Business"
   description="Digital marketing retainers from £3,500/month for outdoor leisure businesses. SEO, Google Ads, Meta Ads, email and AI-powered reporting."
 >
-  <section class="container section-header">
-    <p class="eyebrow">What we offer</p>
-    <h1>Services built for outdoor leisure businesses</h1>
+  <section class="hero">
+    <div class="container hero__inner">
+      <p class="eyebrow eyebrow--hero">What we offer</p>
+      <h1 class="hero__heading">Services built for outdoor leisure businesses</h1>
+    </div>
   </section>
 
   <section class="container">
@@ -89,9 +91,22 @@ const tiers = [
     color: var(--color-accent);
   }
 
-  .section-header {
+  .hero {
+    background-color: var(--color-forest);
+  }
+
+  .hero__inner {
     padding-top: var(--space-2xl);
-    padding-bottom: var(--space-md);
+    padding-bottom: var(--space-xl);
+    max-width: 800px;
+  }
+
+  .eyebrow--hero {
+    color: var(--color-moss);
+  }
+
+  .hero__heading {
+    color: var(--color-stone);
   }
 
   .tiers {
