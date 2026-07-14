@@ -1,7 +1,7 @@
 ---
 title: "SEO for Caravan and Motorhome Dealerships: The Complete Guide"
 description: "New 2026 search data shows caravan buyers moving early. The SEO guide for caravan and motorhome dealerships that covers what lifestyle content skips."
-pubDate: 2026-08-04
+pubDate: 2026-07-14
 author: "Will Hawkins"
 tags: ["SEO"]
 draft: false
