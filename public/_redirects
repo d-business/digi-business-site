@@ -1,0 +1,45 @@
+# Redirect map for digi-business.co.uk legacy site -> new site
+# Path-based rules only. Applies once digi-business.co.uk is pointed at this Worker.
+# Domain/protocol-level rules (www -> apex, http -> https) are NOT handled here -
+# Workers _redirects only matches paths on a single host. Set those up as a
+# zone-level Cloudflare Redirect Rule instead. See redirect_map.xlsx "Notes & Method" tab.
+# Two .webp image URLs with 1 backlink each are intentionally omitted - recommend
+# leaving those as 404s (see notes).
+
+# --- Topical matches ---
+/contact-us/ /contact 301
+/seo-case-studies/ /case-studies 301
+/seo-blog/ /blog 301
+/our-services/seo/ /services 301
+/local-seo-services/ /services 301
+
+# --- Homepage catch-alls (off-niche legacy content, no equivalent on new site) ---
+/terms-and-conditions/ / 301
+/2009/06/19/twenty-uses-for-qr-codes-tags-for-marketing / 301
+/best-seo-books/ / 301
+/2009/04/14/publishers-need-to-think-like-games-developers/ / 301
+/seo-for-candles-guide/ / 301
+/seo.html / 301
+/reasons-to-hire-shopify-seo-experts-e-commerce/ / 301
+/content-marketing.html / 301
+/best-seo-content-writing-courses/ / 301
+/full-service-ecommerce-agency-brand-growth/ / 301
+/2009/09/09/is-xml-heaven-or-hell/ / 301
+/2009/07/people-like-lists-so-use-them.html / 301
+/find-the-perfect-shopify-marketing-agency/ / 301
+/hiring-in-house-seo-experts/ / 301
+/2009/03/18/new-marketing-mob-rule/ / 301
+/guest-posting.html / 301
+/is-google-my-business-worth-it/ / 301
+/link-building-in-seo.html / 301
+/hiring-a-full-service-ecommerce-agency/ / 301
+/hiring-an-seo-agency-for-customer-growth/ / 301
+/how-to-improve-seo-on-shopify/ / 301
+/2012/03/do-your-expenses-in-snap.html / 301
+/how-good-is-shopify-seo/ / 301
+/squarespace-seo-expert/ / 301
+/2012/08/creating-customised-facebook-page-for.html / 301
+/financial-services-content-marketing-agency.html / 301
+/seo-audit-for-free.html / 301
+/conversion-rate-optimisation.html / 301
+/backlinking-services.html / 301
