@@ -1,5 +1,5 @@
 ---
-image:./src/assets/SEO_for_Caravan_and_Motorhome_Dealerships_The_Complete_Guide.png
+image: ./SEO_for_Caravan_and_Motorhome_Dealerships_The_Complete_Guide.webp
 title: "SEO for Caravan and Motorhome Dealerships: The Complete Guide"
 description: "New 2026 search data shows caravan buyers moving early. The SEO guide for caravan and motorhome dealerships that covers what lifestyle content skips."
 pubDate: 2026-07-14
