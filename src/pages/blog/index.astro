@@ -3,6 +3,7 @@ export const prerender = true;
 // Save as: src/pages/blog/index.astro
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 
 const allPosts = await getCollection('blog', ({ data }) => !data.draft);
 const posts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
@@ -27,6 +28,9 @@ const posts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.
         {posts.map((post) => (
           <li>
             <a href={`/blog/${post.id}/`}>
+              {post.data.image && (
+                <Image src={post.data.image} alt={post.data.title} width={400} height={225} class="post-list__thumb" />
+              )}
               <h2>{post.data.title}</h2>
               <p>{post.data.description}</p>
               <p class="post-list__meta">
@@ -96,5 +100,12 @@ const posts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.
     color: var(--color-text-muted);
     font-size: 0.85rem;
     margin: 0;
+  }
+
+  .post-list__thumb {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    margin-bottom: var(--space-sm);
   }
 </style>

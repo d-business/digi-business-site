@@ -3,6 +3,7 @@ export const prerender = true;
 // Save as: src/pages/blog/[...slug].astro
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
@@ -18,6 +19,9 @@ const { Content } = await render(post);
 
 <BaseLayout title={`${post.data.title} | Digital Business`} description={post.data.description}>
   <article class="container post">
+    {post.data.image && (
+      <Image src={post.data.image} alt={post.data.title} width={1200} height={630} class="post__cover" />
+    )}
     <p class="post__meta">
       {post.data.pubDate.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}
       · {post.data.author}
@@ -39,6 +43,13 @@ const { Content } = await render(post);
   .post__meta {
     color: var(--color-text-muted);
     font-size: 0.85rem;
+  }
+
+  .post__cover {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    margin-bottom: var(--space-md);
   }
 
   .post__content :global(h2) {
