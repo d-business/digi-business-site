@@ -33,4 +33,14 @@ const caseStudies = defineCollection({
     }),
 });
 
-export const collections = { blog, caseStudies };
+const legal = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/legal' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    updatedDate: z.coerce.date().optional(),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { blog, caseStudies, legal };

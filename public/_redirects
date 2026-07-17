@@ -14,7 +14,8 @@
 /local-seo-services/ /services 301
 
 # --- Homepage catch-alls (off-niche legacy content, no equivalent on new site) ---
-/terms-and-conditions/ / 301
+# terms-and-conditions removed from this list: it's now a real page at /terms-and-conditions
+# on the new site (src/pages/terms-and-conditions.astro), not a redirect target.
 /2009/06/19/twenty-uses-for-qr-codes-tags-for-marketing / 301
 /best-seo-books/ / 301
 /2009/04/14/publishers-need-to-think-like-games-developers/ / 301

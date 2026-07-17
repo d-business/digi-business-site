@@ -1,0 +1,39 @@
+---
+export const prerender = true;
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getEntry, render } from 'astro:content';
+
+const page = await getEntry('legal', 'terms-and-conditions');
+const { Content } = await render(page);
+---
+
+<BaseLayout title={`${page.data.title} | Digital Business`} description={page.data.description}>
+  <article class="container post">
+    {page.data.updatedDate && (
+      <p class="post__meta">
+        Last updated {page.data.updatedDate.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}
+      </p>
+    )}
+    <h1>{page.data.title}</h1>
+    <div class="post__content">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .post {
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-xl);
+    max-width: 720px;
+  }
+
+  .post__meta {
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+  }
+
+  .post__content :global(h2) {
+    margin-top: var(--space-lg);
+  }
+</style>
