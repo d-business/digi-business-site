@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://digi-business.co.uk/sitemap-index.xml
