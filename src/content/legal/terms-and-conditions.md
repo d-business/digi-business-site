@@ -1,7 +1,7 @@
 ---
 title: "Terms and Conditions"
 description: "The terms and conditions for the use of Digi-Business Ltd's website."
-updatedDate: 2022-08-28
+updatedDate: 2026-07-17
 draft: false
 ---
 
