@@ -1,5 +1,5 @@
 ---
-image: ./how-much-does-seo-cost-uk\how-much-does-seo-cost-uk.webp
+image: ./how-much-does-seo-cost-uk.webp
 title: "How Much Does SEO Cost in the UK? A Realistic 2026 Breakdown"
 description: "SEO in the UK typically costs £500–£5,000+ a month. Here's a realistic 2026 breakdown by business size, pricing model, and what actually drives the cost."
 pubDate: 2026-07-17
