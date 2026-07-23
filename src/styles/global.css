@@ -3,31 +3,35 @@
    Plain CSS, no Tailwind. Save this as: src/styles/global.css
    ========================================================================== */
 
-/* Fraunces (headings) and DM Sans (body) are loaded via Google Fonts —
+/* Fira Sans (headings) and Montserrat (body) are loaded via Google Fonts —
    see the <link> tags in src/layouts/BaseLayout.astro. No local font
-   files needed. */
+   files needed. Matched directly against the live computed styles on
+   digi-business.co.uk (verified 17 July 2026), not just the brand's
+   stated hex codes. */
 
 :root {
-  /* Brand colours */
-  --color-forest: #1a2e1a;
-  --color-sage: #4a6741;
-  --color-moss: #7a9e6e;
-  --color-stone: #f4f0e8;
-  --color-accent: #c17f3a;
+  /* Brand colours — matched to digi-business.co.uk */
+  --color-forest: #241f21;   /* near-black — dark band backgrounds (hero, footer) */
+  --color-navy: #1c244b;     /* headings */
+  --color-slate: #324a6d;    /* body copy */
+  --color-sage: #324a6d;     /* muted text — same family as body copy */
+  --color-moss: color-mix(in srgb, #db2232 55%, white); /* soft red — borders, hover states, labels on dark */
+  --color-stone: #ffffff;    /* light text on dark backgrounds, and page background */
+  --color-accent: #db2232;   /* primary red accent — links, buttons, CTAs */
 
   /* Semantic aliases — reference these in components, not raw colours */
   --color-bg: var(--color-stone);
-  --color-text: var(--color-forest);
+  --color-text: var(--color-slate);
   --color-text-muted: var(--color-sage);
-  --color-heading: var(--color-forest);
+  --color-heading: var(--color-navy);
   --color-link: var(--color-accent);
-  --color-link-hover: var(--color-moss);
+  --color-link-hover: color-mix(in srgb, var(--color-accent) 80%, black);
   --color-border: var(--color-moss);
   --color-surface: #ffffff;
 
   /* Typography */
-  --font-display: 'Fraunces', serif;
-  --font-body: 'DM Sans', sans-serif;
+  --font-display: 'Fira Sans', sans-serif;
+  --font-body: 'Montserrat', sans-serif;
 
   /* Spacing scale */
   --space-xs: 0.5rem;
