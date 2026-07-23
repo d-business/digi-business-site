@@ -250,4 +250,4 @@ You started this post with one number in your head. £500 to £5,000 a month, so
 
 That's worth more than the number itself. Whatever your business, whether you're a sole trader or running a multi-site dealership group with a stock feed to manage, you can now walk into a conversation with an agency and ask why, not just how much.
 
-If you'd rather skip the guesswork altogether, [get in touch](http:///contact/). I'll give you a straight answer on what your website actually needs and what that's likely to cost. No sales script, no inflated retainer to justify a big office.
+If you'd rather skip the guesswork altogether, [get in touch](/contact). I'll give you a straight answer on what your website actually needs and what that's likely to cost. No sales script, no inflated retainer to justify a big office.
