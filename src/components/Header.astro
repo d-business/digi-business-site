@@ -13,8 +13,9 @@ const currentPath = Astro.url.pathname;
     <a href="/" class="site-header__logo">
       <img src="/images/logo.webp" alt="Digital Business" width="160" height="62" />
     </a>
+
     <nav class="site-header__nav" aria-label="Primary">
-      <ul>
+      <ul class="site-header__links" id="primary-nav-links">
         {navItems.map((item) => (
           <li>
             <a href={item.href} aria-current={currentPath.startsWith(item.href) ? 'page' : undefined}>
@@ -22,13 +23,46 @@ const currentPath = Astro.url.pathname;
             </a>
           </li>
         ))}
-        <li>
-          <a href="/contact" class="button button--small">Talk to us</a>
-        </li>
       </ul>
+
+      <a href="/contact" class="button button--small site-header__cta">Talk to us</a>
+
+      <button
+        type="button"
+        class="site-header__toggle"
+        id="nav-toggle"
+        aria-expanded="false"
+        aria-controls="primary-nav-links"
+        aria-label="Open menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </nav>
   </div>
 </header>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const links = document.getElementById('primary-nav-links');
+
+  const closeMenu = () => {
+    links?.classList.remove('is-open');
+    toggle?.classList.remove('is-active');
+    toggle?.setAttribute('aria-expanded', 'false');
+  };
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = links?.classList.toggle('is-open');
+    toggle.classList.toggle('is-active', !!isOpen);
+    toggle.setAttribute('aria-expanded', String(!!isOpen));
+  });
+
+  links?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
+</script>
 
 <style>
   .site-header {
@@ -42,6 +76,11 @@ const currentPath = Astro.url.pathname;
     justify-content: space-between;
     padding-top: var(--space-sm);
     padding-bottom: var(--space-sm);
+    position: relative;
+  }
+
+  .site-header__logo {
+    flex-shrink: 0;
   }
 
   .site-header__logo img {
@@ -50,7 +89,14 @@ const currentPath = Astro.url.pathname;
     width: auto;
   }
 
-  .site-header__nav ul {
+  .site-header__nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    flex-shrink: 0;
+  }
+
+  .site-header__links {
     list-style: none;
     display: flex;
     align-items: center;
@@ -59,17 +105,116 @@ const currentPath = Astro.url.pathname;
     padding: 0;
   }
 
-  .site-header__nav a {
+  .site-header__links a {
     color: var(--color-text);
     font-weight: 700;
   }
 
-  .site-header__nav a[aria-current='page'] {
+  .site-header__links a[aria-current='page'] {
     color: var(--color-accent);
   }
 
   .button--small {
     padding: 0.4rem var(--space-sm);
     color: #ffffff !important;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .site-header__toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .site-header__toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-heading);
+    border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .site-header__toggle.is-active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .site-header__toggle.is-active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .site-header__toggle.is-active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Mobile nav: Services/About/Insights collapse into a hamburger-triggered
+     dropdown. Logo and the Talk to us button always stay visible in the
+     main bar, on one line. */
+  @media (max-width: 768px) {
+    .site-header__links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      background-color: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+      padding: var(--space-sm) var(--space-md);
+      z-index: 20;
+    }
+
+    .site-header__links.is-open {
+      display: flex;
+    }
+
+    .site-header__links li {
+      width: 100%;
+      padding: var(--space-xs) 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .site-header__links li:last-child {
+      border-bottom: none;
+    }
+
+    .site-header__links a {
+      display: block;
+    }
+
+    .site-header__cta {
+      padding: 0.35rem 0.7rem;
+      font-size: 0.9rem;
+    }
+
+    .site-header__toggle {
+      display: flex;
+    }
+  }
+
+  /* Extra-narrow phones: trim spacing further so logo, button and
+     hamburger all comfortably fit on one line. */
+  @media (max-width: 360px) {
+    .site-header__nav {
+      gap: var(--space-xs);
+    }
+
+    .site-header__cta {
+      padding: 0.3rem 0.5rem;
+      font-size: 0.8rem;
+    }
   }
 </style>
