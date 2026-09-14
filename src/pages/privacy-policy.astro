@@ -36,4 +36,23 @@ const { Content } = await render(page);
   .post__content :global(h2) {
     margin-top: var(--space-lg);
   }
+
+  .post__content :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--space-md) 0;
+  }
+
+  .post__content :global(th),
+  .post__content :global(td) {
+    border: 1px solid var(--color-border);
+    padding: var(--space-xs) var(--space-sm);
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .post__content :global(th) {
+    background-color: var(--color-surface);
+    font-family: var(--font-display);
+  }
 </style>
