@@ -19,7 +19,7 @@ We collect personal data in two ways:
 
 **Information you give us directly.** When you use the contact form on this site, we collect your name, email address, business name (if provided), and the content of your message.
 
-**Information collected automatically.** Like most websites, our hosting infrastructure automatically logs standard technical data for security and operational purposes, such as IP address, browser type, and pages requested. This site does not currently use analytics, advertising, or marketing cookies. If that changes in future — for example, if we add website analytics — we will update this policy and add a cookie consent mechanism at that time.
+**Information collected automatically.** Like most websites, our hosting infrastructure automatically logs standard technical data for security and operational purposes, such as IP address, browser type, and pages requested. This site does not currently use analytics, advertising, or marketing cookies. If that changes in future - for example, if we add website analytics - we will update this policy and add a cookie consent mechanism at that time.
 
 This site loads fonts from Google Fonts. Loading a font makes a request to Google's servers, which will process your IP address as part of that request. Google's privacy policy is available at https://policies.google.com/privacy.
 
@@ -27,7 +27,7 @@ This site loads fonts from Google Fonts. Loading a font makes a request to Googl
 
 | What we do | Why | Lawful basis (UK GDPR Article 6) |
 |---|---|---|
-| Respond to your enquiry | To answer your question or provide a quote | Legitimate interests — pursuing a business enquiry you initiated |
+| Respond to your enquiry | To answer your question or provide a quote | Legitimate interests - pursuing a business enquiry you initiated |
 | Keep a record of enquiries | For our own business records and to follow up appropriately | Legitimate interests |
 | Operate and secure the website | To keep the site running and protect it from abuse | Legitimate interests |
 
@@ -37,8 +37,8 @@ We do not use your data for automated decision-making or profiling, and we do no
 
 We use third-party service providers to run this website, who process data on our behalf as data processors:
 
-- **Cloudflare** — hosts this website and processes traffic and form submissions in the course of doing so.
-- **Google** — delivers the web fonts used on this site.
+- **Cloudflare** - hosts this website and processes traffic and form submissions in the course of doing so.
+- **Google** - delivers the web fonts used on this site.
 
 Where these providers process data outside the UK, they do so under recognised safeguards such as the UK International Data Transfer Addendum or the EU Standard Contractual Clauses, as published in their own privacy and data processing terms.
 
@@ -46,7 +46,7 @@ We may also disclose personal data where required to do so by law.
 
 ## How Long We Keep Your Data
 
-We keep contact form enquiries for as long as reasonably necessary to deal with your enquiry and for a reasonable period afterwards for our business records, and no longer than necessary for that purpose. [Specific retention period to be confirmed — e.g. "24 months from last contact."]
+We keep contact form enquiries for as long as reasonably necessary to deal with your enquiry and for a reasonable period afterwards for our business records, and no longer than necessary for that purpose. [Specific retention period to be confirmed - e.g. "24 months from last contact."]
 
 ## Your Rights
 
