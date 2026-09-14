@@ -3,51 +3,31 @@ export const prerender = true;
 // Save as: src/pages/services.astro
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const tiers = [
+const engagementOptions = [
   {
-    name: 'Foundation',
-    price: '£3,500/mo',
-    description: 'For businesses ready to establish a serious digital presence',
-    features: [
-      'Technical SEO audit and fixes',
-      'Monthly content strategy',
-      'AI-powered monthly report',
-      'Monthly strategy call',
-    ],
-    featured: false,
+    name: 'Project-Based',
+    summary: 'Defined scope, clear start and end date',
+    description:
+      "For work with a clear brief and finish line — a technical SEO audit, a website rebuild, a content batch, or a campaign launch. Good fit when you already know what needs doing.",
   },
   {
-    name: 'Growth',
-    price: '£7,000/mo',
-    description: 'For businesses serious about market leadership',
-    features: [
-      'Everything in Foundation',
-      'Google Ads management',
-      'Meta Ads management',
-      'Email marketing',
-      'Fortnightly strategy calls',
-    ],
-    featured: true,
+    name: 'Fractional / Retainer',
+    summary: 'Ongoing support, built around your business',
+    description:
+      'SEO, paid media, content and reporting, run continuously rather than as a one-off. For outdoor leisure vehicle businesses who want consistent, compounding growth without hiring in-house.',
   },
   {
-    name: 'Partner',
-    price: '£10,000/mo',
-    description: 'Full-service digital growth partnership',
-    features: [
-      'Everything in Growth',
-      'Operational automation',
-      'Custom AI tooling',
-      'Weekly calls and reporting',
-      'Priority response',
-    ],
-    featured: false,
+    name: 'Hourly',
+    summary: 'On-call support and advisory work',
+    description:
+      'For existing clients who need ad hoc support, or a second opinion on your current marketing. SEO, design and development work at £150/hr; strategic consulting at £200/hr.',
   },
 ];
 ---
 
 <BaseLayout
   title="Digital Marketing Services for Outdoor Leisure Businesses | Digital Business"
-  description="Digital marketing retainers from £3,500/month for outdoor leisure businesses. SEO, Google Ads, Meta Ads, email and AI-powered reporting."
+  description="Specialist SEO, Google Ads, Meta Ads and content marketing for outdoor leisure vehicle businesses. Project-based, retainer and hourly engagement options."
 >
   <section class="hero">
     <div class="container hero__inner">
@@ -57,27 +37,25 @@ const tiers = [
   </section>
 
   <section class="section container">
-    <p class="eyebrow">Retainer packages</p>
-    <h2>Choose the right level of support</h2>
+    <p class="eyebrow">Engagement options</p>
+    <h2>How we work together</h2>
     <p>
-      All packages include dedicated account management, monthly AI-powered reporting, and access to our full team. No lock-in contracts after the initial 3 months.
+      However you'd like to work with us, you get direct access to a specialist team that knows the outdoor leisure vehicle market — not a generic marketing playbook applied to your business.
     </p>
 
     <div class="tiers">
-      {tiers.map((tier) => (
-        <div class:list={['tier-card', { 'tier-card--featured': tier.featured }]}>
-          {tier.featured && <p class="tier-card__badge">Most popular</p>}
-          <h3>{tier.name}</h3>
-          <p class="tier-card__price">{tier.price}</p>
-          <p class="tier-card__description">{tier.description}</p>
-          <ul>
-            {tier.features.map((feature) => (
-              <li>+ {feature}</li>
-            ))}
-          </ul>
-          <a href="/contact" class="button">Enquire</a>
+      {engagementOptions.map((option) => (
+        <div class="tier-card">
+          <h3>{option.name}</h3>
+          <p class="tier-card__summary">{option.summary}</p>
+          <p class="tier-card__description">{option.description}</p>
         </div>
       ))}
+    </div>
+
+    <div class="services-cta">
+      <p class="services-cta__prompt">Ready to talk about your project?</p>
+      <a href="/contact" class="button">Book an intro call</a>
     </div>
   </section>
 </BaseLayout>
@@ -118,7 +96,7 @@ const tiers = [
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: var(--space-md);
-    margin: var(--space-lg) 0 var(--space-xl);
+    margin: var(--space-lg) 0;
   }
 
   .tier-card {
@@ -130,37 +108,27 @@ const tiers = [
     flex-direction: column;
   }
 
-  .tier-card--featured {
-    border-color: var(--color-accent);
-    border-width: 2px;
-  }
-
-  .tier-card__badge {
+  .tier-card__summary {
     color: var(--color-accent);
     font-weight: 700;
-    font-size: 0.8rem;
-    text-transform: uppercase;
+    font-size: 0.85rem;
     margin-bottom: var(--space-xs);
-  }
-
-  .tier-card__price {
-    font-family: var(--font-display);
-    font-size: 1.75rem;
-    color: var(--color-forest);
   }
 
   .tier-card__description {
     color: var(--color-text-muted);
+    margin: 0;
   }
 
-  .tier-card ul {
-    list-style: none;
-    padding: 0;
-    margin: var(--space-sm) 0;
-    flex-grow: 1;
+  .services-cta {
+    text-align: center;
+    padding-top: var(--space-md);
   }
 
-  .tier-card li {
-    padding: 0.3rem 0;
+  .services-cta__prompt {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--color-heading);
+    font-style: italic;
   }
 </style>
