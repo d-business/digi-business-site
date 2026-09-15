@@ -2,24 +2,31 @@
 export const prerender = true;
 // Save as: src/pages/about.astro
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getExperienceYears } from '../lib/experience.js';
+
+const { will, lynne, combined } = getExperienceYears();
 
 const team = [
   {
     name: 'Will Hawkins',
     role: 'Founder - SEO, Strategy and Technology',
-    bio: '17 years building digital presence for outdoor leisure businesses. Owns technical SEO, overall strategy, and the technology infrastructure that powers our AI-driven reporting and automation.',
+    experienceKey: 'will',
+    experienceYears: will,
+    bioRest: 'years building digital presence for outdoor leisure businesses. Owns technical SEO, overall strategy, and the technology infrastructure that powers our AI-driven reporting and automation.',
   },
   {
     name: 'Lynne Cullen',
     role: 'Partner - SEO, Paid Media, Email and Social',
-    bio: 'Specialist in PPC campaign management across Google and Meta, email marketing strategy, and social media. Brings precision and performance focus to every campaign she manages.',
+    experienceKey: 'lynne',
+    experienceYears: lynne,
+    bioRest: 'years specialising in PPC campaign management across Google and Meta, email marketing strategy, and social media. Brings precision and performance focus to every campaign she manages.',
   },
 ];
 ---
 
 <BaseLayout
-  title="About Digital Business | 17 Years in Outdoor Leisure Digital Marketing"
-  description="Digital Business is a specialist digital marketing agency with 17 years of exclusive focus on the outdoor leisure vehicle market. Founded by Will Hawkins."
+  title={`About Digital Business | ${combined} Years Combined in Outdoor Leisure Digital Marketing`}
+  description={`Digital Business is a specialist digital marketing agency with ${combined} years combined experience in the outdoor leisure vehicle market. Founded by Will Hawkins.`}
 >
   <section class="hero">
     <div class="container hero__inner">
@@ -36,7 +43,7 @@ const team = [
         Digital Business was founded on a simple premise: that deep niche expertise delivers better results than broad generalism. While other agencies chased every client in every sector, we chose to go deep in one.
       </p>
       <p>
-        After 17 years working exclusively in the outdoor leisure vehicle market, we understand this sector at a level no generalist agency can match. We know the brands, the buyers, the seasonality, the competition, and the margins.
+        Between us, we have <span data-experience="combined">{combined}</span> years working exclusively in the outdoor leisure vehicle market, and we understand this sector at a level no generalist agency can match. We know the brands, the buyers, the seasonality, the competition, and the margins.
       </p>
       <p>
         That knowledge is built from years of running campaigns, analysing data, and delivering results for businesses selling caravans, motorhomes, campervans, and accessories across the UK.
@@ -48,7 +55,7 @@ const team = [
         <div class:list={['team-member', { 'team-member--divider': index > 0 }]}>
           <h3>{person.name}</h3>
           <p class="team-member__role">{person.role}</p>
-          <p>{person.bio}</p>
+          <p><span data-experience={person.experienceKey}>{person.experienceYears}</span> {person.bioRest}</p>
         </div>
       ))}
     </div>

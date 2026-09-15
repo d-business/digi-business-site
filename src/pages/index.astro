@@ -2,9 +2,12 @@
 export const prerender = true;
 // Save as: src/pages/index.astro
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getExperienceYears } from '../lib/experience.js';
+
+const { combined } = getExperienceYears();
 
 const stats = [
-  { value: '17', label: 'Years in the outdoor leisure market' },
+  { value: String(combined), label: 'Years combined experience in the outdoor leisure market', experienceKey: 'combined' },
   { value: '1', label: 'Niche. Deep expertise, not wide mediocrity.' },
   { value: 'AI', label: 'Powered reporting and automation' },
   { value: '£1m+', label: 'Target client turnover range' },
@@ -28,14 +31,14 @@ const services = [
 
 <BaseLayout
   title="Digital Business | Outdoor Leisure Digital Marketing Specialists"
-  description="Specialist digital marketing for outdoor leisure businesses. 17 years in caravans, motorhomes and campervans. SEO, Ads and automation."
+  description={`Specialist digital marketing for outdoor leisure businesses. ${combined} years combined in caravans, motorhomes and campervans. SEO, Ads and automation.`}
 >
   <section class="hero">
     <div class="container hero__inner">
       <p class="eyebrow eyebrow--hero">Outdoor Leisure Vehicle Market</p>
       <h1 class="hero__heading">Digital growth for outdoor leisure businesses that mean business</h1>
       <p class="hero__lead">
-        17 years. One niche. We know your market, your customers, and what actually moves the needle. No generalists. No guesswork.
+        <span data-experience="combined">{combined}</span> years combined. One niche. We know your market, your customers, and what actually moves the needle. No generalists. No guesswork.
       </p>
       <div class="hero__actions">
         <a href="/contact" class="button">Start the conversation</a>
@@ -47,9 +50,9 @@ const services = [
   <section class="section container why">
     <div class="why__text">
       <p class="eyebrow">Why Digital Business</p>
-      <h2>17 years. One market. Unmatched expertise.</h2>
+      <h2><span data-experience="combined">{combined}</span> years combined. One market. Unmatched expertise.</h2>
       <p>
-        Most digital agencies claim they can work with any business. We chose differently. For nearly two decades we have worked exclusively in the outdoor leisure vehicle sector.
+        Most digital agencies claim they can work with any business. We chose differently. Between us, we have worked exclusively in the outdoor leisure vehicle sector for well over a decade.
       </p>
       <p>
         That depth means we understand the buying cycles, seasonal patterns, audience psychology, and competitive landscape better than any generalist agency ever could.
@@ -59,7 +62,7 @@ const services = [
     <div class="why__stats">
       {stats.map((stat, index) => (
         <div class:list={['stat-card', { 'stat-card--highlight': index === stats.length - 1 }]}>
-          <p class="stat-card__value">{stat.value}</p>
+          <p class="stat-card__value" data-experience={stat.experienceKey}>{stat.value}</p>
           <p class="stat-card__label">{stat.label}</p>
         </div>
       ))}
