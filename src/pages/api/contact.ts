@@ -8,6 +8,7 @@
 
 import type { APIRoute } from 'astro';
 import { EmailMessage } from 'cloudflare:email';
+import { env } from 'cloudflare:workers';
 import { createMimeMessage } from 'mimetext';
 
 export const prerender = false;
@@ -50,9 +51,9 @@ export const POST: APIRoute = async ({ request, locals, redirect }) => {
   );
 
   try {
-    // "SEB" must match the binding name in wrangler.jsonc's send_email array
-    const runtime = (locals as any).runtime;
-    await runtime.env.SEB.send(emailMessage);
+    // "SEB" must match the binding name in wrangler.jsonc's send_email array.
+    // Astro v6+ removed locals.runtime.env; bindings come from cloudflare:workers.
+    await (env as any).SEB.send(emailMessage);
   } catch (err) {
     console.error('Email send failed:', err);
     return new Response('Could not send message. Please email will@digi-business.co.uk directly.', {

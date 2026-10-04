@@ -1,6 +1,8 @@
 # Domain Cutover Plan: digi-business.co.uk → Cloudflare Worker
 
-Prepared 7 August 2026. This is a reference plan, not yet executed — nothing below has been actioned. All DNS values were pulled live from public DNS lookups on the date above; re-check them yourself immediately before you actually start, in case anything's changed since.
+Prepared 7 August 2026. Updated 4 October 2026. This is a reference plan, not yet executed — nothing below has been actioned. All DNS values were pulled live from public DNS lookups and re-verified on 4 October 2026 (no changes since August); re-check them yourself immediately before you actually start, in case anything's changed since.
+
+**Changes in the 4 October update:** added the Google DKIM record (`google._domainkey`) to Stage 2, which was missing from the original plan; confirmed Hostinger holds no mailboxes or forwarders, resolving the MX question; noted the leftover Hostinger `autodiscover` CNAME as deliberately not recreated.
 
 ## Current state (confirmed by live DNS lookup, not assumed)
 
@@ -12,9 +14,12 @@ Prepared 7 August 2026. This is a reference plan, not yet executed — nothing b
 | MX | `1 aspmx.l.google.com` / `5 alt1.aspmx.l.google.com` / `5 alt2.aspmx.l.google.com` / `5 mx1.hostinger.co.uk` / `10 alt3.aspmx.l.google.com` / `10 alt4.aspmx.l.google.com` / `10 mx2.hostinger.co.uk` |
 | TXT (SPF) | `v=spf1 include:_spf.google.com ~all` |
 | TXT (DMARC) | `v=DMARC1; p=none` |
+| TXT (DKIM) | `google._domainkey` — Google Workspace DKIM public key (2048-bit RSA) |
 | TXT (verification, x4) | Google Search Console, Facebook Business, Yandex, Anthropic domain verification — exact strings below |
+| CNAME (autodiscover) | `autodiscover.mail.hostinger.com` — leftover Hostinger mail client config |
+| `mail.` subdomain | Does not exist (NXDOMAIN) |
 
-**The MX finding**: Google Workspace and Hostinger mail servers are both listed. Your SPF record only authorises Google, which is why the plan below drops the two Hostinger MX entries. Before you actually do this: double-check nothing (an alias, a shared mailbox, an old catch-all) is still relying on Hostinger mail. If in doubt, leave them in for now and revisit — it costs nothing to keep them a little longer, but a wrongly dropped mailbox costs you real email.
+**The MX finding (resolved)**: Google Workspace and Hostinger mail servers are both listed in MX, but Google is priority 1 and Hostinger only 5 and 10, so mail flows to Google. Your SPF record only authorises Google. On 4 October 2026 the Hostinger hPanel was checked directly: **0 of 100 mailboxes and no forwarders** exist for the domain. Dropping the two Hostinger MX entries is therefore safe. (The Hostinger free email plan shows a date of 2026-12-04; it is unconfirmed whether that is the email plan expiry or the domain renewal date — check at the registrar before Stage 6.)
 
 ## Why this is a bigger step than a normal DNS edit
 
@@ -26,7 +31,7 @@ The good news: creating records inside Cloudflare doesn't affect the live site a
 
 ## Stage 1 — Add the site to Cloudflare
 
-1. In the Cloudflare dashboard, "Add a Site" → enter `digi-business.co.uk`.
+1. In the Cloudflare dashboard, choose **Connect a domain** (older wording: "Add a Site") → enter `digi-business.co.uk`. Do **not** choose "Transfer a domain" (that moves registration to Cloudflare Registrar) or "Buy a domain". Select the Free plan if prompted.
 2. Cloudflare scans existing DNS and shows you what it found — compare against the table above and fix anything it missed or got wrong.
 3. Cloudflare will assign you two nameservers (something like `xxx.ns.cloudflare.com`). Note them down. **Do not enter these at your registrar yet.**
 
@@ -43,12 +48,26 @@ Do not skip any of these — each one is something currently working that would 
 | MX | `@` | `alt4.aspmx.l.google.com` | Priority 10 |
 | TXT | `@` | `v=spf1 include:_spf.google.com ~all` | SPF — keep exactly as-is |
 | TXT | `_dmarc` | `v=DMARC1; p=none` | DMARC — keep exactly as-is |
+| TXT | `google._domainkey` | Copy the full `v=DKIM1; k=rsa; p=...` value exactly from the live record (re-fetch at cutover time, e.g. via Google Admin → Gmail → Authenticate email, or `https://dns.google/resolve?name=google._domainkey.digi-business.co.uk&type=TXT`) | Google DKIM — if dropped, outgoing mail loses its valid signature and deliverability suffers. Long value: check Cloudflare doesn't truncate it |
 | TXT | `@` | `google-site-verification=GvZSeMqbfIZmySOHBfklo9D0uOVokWs2nMqFoOaYv1Q` | Search Console — breaks GSC if dropped |
 | TXT | `@` | `facebook-domain-verification=az0z3a6qtxkla997pvlymvl46omzof` | Facebook Business verification |
 | TXT | `@` | `yandex-verification: e3de273ea7817401` | Yandex Webmaster verification |
 | TXT | `@` | `anthropic-domain-verification-wt9bbm=QuoJG1FAvCUnCBvSUKtyhOGeO` | Anthropic domain verification |
 
-**Deliberately not recreated**, per your decision: the two Hostinger MX records (`mx1.hostinger.co.uk`, `mx2.hostinger.co.uk`) and the Hostinger A records / www CNAME — those pointed at the old host and are being replaced by the Worker in Stage 3.
+**Deliberately not recreated**: the two Hostinger MX records (`mx1.hostinger.co.uk`, `mx2.hostinger.co.uk`), the Hostinger A records / www CNAME, and the `autodiscover` and `autoconfig` CNAMEs to `*.mail.hostinger.com` (found by the Stage 1 import, not by the earlier lookups) — those pointed at the old host and are being replaced by the Worker in Stage 3 (or, for autodiscover, serve no purpose with no Hostinger mailboxes).
+
+**Additional records found by the Stage 1 import (not in the original lookups), and decisions made on 4 October 2026:**
+
+| Record | Decision |
+|---|---|
+| Apex `A` x2 and `AAAA` x2 (Hostinger) | Delete |
+| `dev` (old version of the site) | Delete |
+| `new`, `ftp` (unused) | Delete |
+| `pm-bounces` → `pm.mtasv.net` (Postmark return-path, from an unused ActiveCampaign/Postmark trial) | Delete if confirmed nothing sends via Postmark/ActiveCampaign; otherwise set DNS only |
+| `n8n` → `187.124.117.224` | Keep, set to **DNS only** (Cloudflare imports it as Proxied; DNS only preserves today's behaviour) |
+| `www` → `192.0.2.1` | Keep, **Proxied** (placeholder for the redirect rule) |
+
+**Safety net**: DNS cannot list every record in a zone, so the lookups above may not be exhaustive. Use the Stage 1 Cloudflare scan to compare against this table, and investigate any record it finds that isn't listed here.
 
 ## Stage 3 — Point the domain at the Worker
 
@@ -56,6 +75,8 @@ Do not skip any of these — each one is something currently working that would 
 2. Decide on `www`: recommend **not** serving the full site twice at `www` — instead add a **Redirect Rule** (Stage 4) sending `www` → the apex domain. Cleaner, avoids duplicate-content SEO issues, and matches the redirect map we already built for the old site's `www` variant.
 
 ## Stage 4 — Add the www → apex redirect rule
+
+**Prerequisite:** Redirect Rules only act on proxied traffic, so `www` needs a proxied DNS record first. In DNS, delete the imported `www` CNAME (it points at Hostinger) and add an **A record, name `www`, content `192.0.2.1`, Proxied (orange cloud)**. The IP is a dummy; the redirect answers before traffic reaches it.
 
 In Cloudflare's **Rules → Redirect Rules** (zone level, not the `_redirects` file — that only handles paths on a single host, not domain-level redirects):
 
@@ -79,9 +100,11 @@ Propagation is typically fast (Cloudflare usually detects the change within minu
 
 - [ ] `https://digi-business.co.uk` loads the new site, padlock shows a valid Cloudflare SSL cert
 - [ ] `https://www.digi-business.co.uk` redirects to the apex domain
+- [ ] `https://digi-business.co.uk/robots.txt` still contains the sitemap line (Cloudflare Bot Preference Sync prepends to it)
 - [ ] A handful of the old backlinked URLs from the redirect map (e.g. `/contact-us/`, `/seo-case-studies/`) 301 correctly
 - [ ] Send a test email to `will@digi-business.co.uk` from an external address, confirm it arrives
 - [ ] Send a test email *from* the Google Workspace account, confirm it sends (SPF still valid)
+- [ ] Open the headers of that test email and confirm SPF, DKIM and DMARC all show `pass`
 - [ ] Google Search Console property for digi-business.co.uk still shows as verified
 - [ ] Facebook Business Manager domain verification still shows as verified
 - [ ] The contact form on the new site actually delivers an email (this is the first time it'll be tested against the real domain)
