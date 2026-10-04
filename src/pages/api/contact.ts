@@ -9,7 +9,7 @@
 import type { APIRoute } from 'astro';
 import { EmailMessage } from 'cloudflare:email';
 import { env } from 'cloudflare:workers';
-import { createMimeMessage } from 'mimetext';
+import { createMimeMessage, Mailbox } from 'mimetext';
 
 export const prerender = false;
 
@@ -25,12 +25,20 @@ export const POST: APIRoute = async ({ request, locals, redirect }) => {
     return new Response('Missing required fields', { status: 400 });
   }
 
+  // Basic check so a malformed address can't break the message or inject headers
+  if (!/^[^\s@<>"]+@[^\s@<>"]+\.[^\s@<>"]+$/.test(email)) {
+    return new Response('Please enter a valid email address', { status: 400 });
+  }
+  const safeName = name.replace(/[\r\n"<>]/g, ' ').trim();
+
   const msg = createMimeMessage();
   // NOTE: sender address must be on the digi-business.co.uk domain
   // (the domain with Email Routing active) — it does not need to be a
   // real inbox, but it must match the verified sending domain.
   msg.setSender({ name: 'Digital Business Website', addr: 'noreply@digi-business.co.uk' });
   msg.setRecipient('will@digi-business.co.uk');
+  // Replying in Gmail goes straight to the person who filled in the form
+  msg.setHeader('Reply-To', new Mailbox({ name: safeName, addr: email }));
   msg.setSubject(`New enquiry from ${name}${business ? ' (' + business + ')' : ''}`);
   msg.addMessage({
     contentType: 'text/plain',
