@@ -1,0 +1,171 @@
+---
+// Save as: src/components/CookieBanner.astro
+// Consent banner. Google Tag Manager (and therefore GA4 and any other tags)
+// is only loaded AFTER the visitor clicks Accept. Nothing loads on Reject or
+// before a choice is made. The choice is remembered in localStorage and can be
+// changed via any element with the data-cookie-settings attribute (footer link).
+const GTM_ID = 'GTM-KQRFTSV';
+---
+
+<div
+  id="cookie-banner"
+  class="cookie-banner"
+  role="dialog"
+  aria-label="Cookie consent"
+  data-gtm-id={GTM_ID}
+  hidden
+>
+  <div class="container cookie-banner__inner">
+    <p class="cookie-banner__text">
+      We use analytics cookies (Google Analytics via Google Tag Manager) to understand how visitors use this site. They are only set if you accept.
+      <a href="/privacy-policy">Privacy Policy</a>
+    </p>
+    <div class="cookie-banner__actions">
+      <button type="button" class="button" id="cookie-accept">Accept</button>
+      <button type="button" class="button cookie-banner__reject" id="cookie-reject">Reject</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cookie-banner {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    background-color: var(--color-forest);
+    color: var(--color-stone);
+    padding: var(--space-sm) 0;
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.25);
+  }
+
+  .cookie-banner[hidden] {
+    display: none;
+  }
+
+  .cookie-banner__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+  }
+
+  .cookie-banner__text {
+    margin: 0;
+    font-size: 0.9rem;
+    max-width: 760px;
+  }
+
+  .cookie-banner__text a {
+    color: var(--color-stone);
+    text-decoration: underline;
+  }
+
+  .cookie-banner__actions {
+    display: flex;
+    gap: var(--space-xs);
+    flex-shrink: 0;
+  }
+
+  .cookie-banner__reject {
+    background-color: transparent;
+    color: var(--color-stone);
+    border: 2px solid var(--color-stone);
+  }
+
+  .cookie-banner__reject:hover {
+    background-color: var(--color-stone);
+    color: var(--color-forest);
+  }
+</style>
+
+<script>
+  const STORAGE_KEY = 'db_cookie_consent';
+  const banner = document.getElementById('cookie-banner');
+  const gtmId = banner?.dataset.gtmId;
+
+  function getChoice(): string | null {
+    try {
+      return localStorage.getItem(STORAGE_KEY);
+    } catch {
+      return null;
+    }
+  }
+
+  function setChoice(value: string) {
+    try {
+      localStorage.setItem(STORAGE_KEY, value);
+    } catch {
+      /* storage unavailable: choice just won't persist */
+    }
+  }
+
+  let gtmLoaded = false;
+  function loadGtm() {
+    if (gtmLoaded || !gtmId) return;
+    gtmLoaded = true;
+    const w = window as any;
+    w.dataLayer = w.dataLayer || [];
+    w.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtm.js?id=' + encodeURIComponent(gtmId);
+    document.head.appendChild(script);
+  }
+
+  // Best-effort removal of Google Analytics cookies when consent is withdrawn
+  function clearAnalyticsCookies() {
+    const hosts = [location.hostname, '.' + location.hostname.replace(/^www\./, '')];
+    document.cookie.split(';').forEach((c) => {
+      const name = c.split('=')[0].trim();
+      if (name === '_ga' || name === '_gid' || name.startsWith('_ga_') || name.startsWith('_gat')) {
+        hosts.forEach((h) => {
+          document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=' + h;
+        });
+        document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+      }
+    });
+  }
+
+  function showBanner() {
+    if (banner) banner.hidden = false;
+  }
+
+  function hideBanner() {
+    if (banner) banner.hidden = true;
+  }
+
+  const existing = getChoice();
+  if (existing === 'accepted') {
+    loadGtm();
+  } else if (existing === null) {
+    showBanner();
+  }
+
+  document.getElementById('cookie-accept')?.addEventListener('click', () => {
+    setChoice('accepted');
+    hideBanner();
+    loadGtm();
+  });
+
+  document.getElementById('cookie-reject')?.addEventListener('click', () => {
+    const wasAccepted = getChoice() === 'accepted';
+    setChoice('rejected');
+    hideBanner();
+    if (wasAccepted) {
+      clearAnalyticsCookies();
+      // Reload so the already-loaded GTM scripts stop running for this visit
+      location.reload();
+    }
+  });
+
+  // Footer "Cookie settings" link re-opens the banner so the choice can change
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement | null;
+    if (target?.closest('[data-cookie-settings]')) {
+      showBanner();
+    }
+  });
+</script>
