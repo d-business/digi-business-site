@@ -44,3 +44,59 @@
 /seo-audit-for-free.html / 301
 /conversion-rate-optimisation.html / 301
 /backlinking-services.html / 301
+
+# --- Added 5 Oct 2026 from Search Console "Top pages" export (old-site URLs with impressions/clicks) ---
+# About
+/about-digital-business/ /about 301
+
+# Service-style pages -> services
+/guest-posting-agency/ /services 301
+/seo-strategy-service/ /services 301
+/seo-strategy-agency/ /services 301
+/our-services/effective-uk-content-marketing-agency/ /services 301
+/seo-audit-for-free-4/ /services 301
+/seo-southport/ /services 301
+/seo-liverpool/ /services 301
+/local-seo-services-southport/ /services 301
+/local-seo-services-bourne/ /services 301
+
+# Informational articles and free tools -> blog hub (no like-for-like pages on the new site)
+/7-ai-story-generators-ignite-your-creativity/ /blog 301
+/link-building-in-seo/ /blog 301
+/seo-keywords-for-homecare-agencies/ /blog 301
+/chatgpt-hacks-productivity/ /blog 301
+/seo-for-ecommerce-websites/ /blog 301
+/home-care-seo-tips/ /blog 301
+/on-page-seo-optimise-your-website/ /blog 301
+/local-seo-13-benefits/ /blog 301
+/shopify-seo-optimization/ /blog 301
+/5-rules-search-engine-optimization/ /blog 301
+/home-care-seo-ultimate-guide-2022/ /blog 301
+/why-search-engine-optimisation-and-content-marketing-work-together-so-well/ /blog 301
+/blog-post-analysis-tool/ /blog 301
+/ai-introduction-writer-free/ /blog 301
+/201-content-marketing-tools-complete-list/ /blog 301
+/which-ecommerce-platform-is-best-for-seo/ /blog 301
+/seo-questions/ /blog 301
+/searchgpt-v-other-search-engines/ /blog 301
+/free-blog-post-headline-generator/ /blog 301
+/hyperlocal-social-media-marketing/ /blog 301
+/content-marketing-for-your-business/ /blog 301
+/shopify-vs-wordpress/ /blog 301
+/free-shopify-seo-checker/ /blog 301
+/shopify-seo-tips/ /blog 301
+/why-you-shouldnt-update-every-old-blog-post/ /blog 301
+/financial-services-content-marketing-agency/ /blog 301
+/why-copying-competitor-pages-kills-your-seo-content-strategy/ /blog 301
+/benefits-of-marketing-automation/ /blog 301
+/seo-tactics-for-small-businesses/ /blog 301
+/seo-email-marketing/ /blog 301
+/google-eeat-seo/ /blog 301
+/stop-writing-seo-content-start-designing-it/ /blog 301
+/are-shopify-tags-used-for-seo/ /blog 301
+/best-lists-are-actually-bad-seo/ /blog 301
+/internal-linking-seo-power-move/ /blog 301
+
+# Old WordPress tag and category archives -> blog hub
+/tag/* /blog 301
+/category/* /blog 301
