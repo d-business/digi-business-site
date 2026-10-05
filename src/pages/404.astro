@@ -1,0 +1,86 @@
+---
+export const prerender = true;
+// Save as: src/pages/404.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page not found | Digital Business"
+  description="The page you were looking for could not be found. Try one of these pages instead."
+>
+  <section class="hero">
+    <div class="container hero__inner">
+      <p class="eyebrow eyebrow--hero">Error 404</p>
+      <h1 class="hero__heading">We couldn't find that page</h1>
+    </div>
+  </section>
+
+  <section class="section container">
+    <p class="lead">
+      The page you were looking for has moved, been removed, or the address was mistyped. Here are some places to carry on from.
+    </p>
+
+    <div class="actions">
+      <a href="/" class="button">Back to the homepage</a>
+      <a href="/services" class="button button--outline">Our services</a>
+      <a href="/blog" class="button button--outline">Read our insights</a>
+      <a href="/contact" class="button button--outline">Talk to us</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-accent);
+  }
+
+  .hero {
+    background-color: var(--color-forest);
+  }
+
+  .hero__inner {
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-xl);
+  }
+
+  .eyebrow--hero {
+    color: var(--color-moss);
+  }
+
+  .hero__heading {
+    color: var(--color-stone);
+    max-width: 800px;
+  }
+
+  .section {
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-xl);
+  }
+
+  .lead {
+    font-size: 1.15rem;
+    max-width: 640px;
+  }
+
+  .actions {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    margin-top: var(--space-md);
+  }
+
+  .button--outline {
+    background-color: transparent;
+    color: var(--color-accent);
+    border: 2px solid var(--color-accent);
+  }
+
+  .button--outline:hover {
+    background-color: var(--color-accent);
+    color: #ffffff;
+  }
+</style>
