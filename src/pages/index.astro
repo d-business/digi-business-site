@@ -88,24 +88,26 @@ const services = [
     <a href="/services" class="button button--dark">See services and pricing</a>
   </section>
 
-  <section class="section container demand">
-    <h2>Find out what your buyers are searching for</h2>
-    <p>We'll pull the search data for your area and show you:</p>
-    <ul class="demand__list">
-      <li>what local buyers search for, and when</li>
-      <li>which of those searches you show up for</li>
-      <li>where your competitors win and you don't</li>
-    </ul>
-    <p>No sales pitch. Just the data.</p>
-    <a href="/contact" class="button">Get your free search demand report</a>
-  </section>
+  <section class="section container demand-row">
+    <div class="demand">
+      <h2>Find out what your buyers are searching for</h2>
+      <p>We'll pull the search data for your area and show you:</p>
+      <ul class="demand__list">
+        <li>what local buyers search for, and when</li>
+        <li>which of those searches you show up for</li>
+        <li>where your competitors win and you don't</li>
+      </ul>
+      <p>No sales pitch. Just the data.</p>
+      <a href="/contact" class="button">Get your free search demand report</a>
+    </div>
 
-  <section class="section section--cta container">
-    <h2>Is this right for you?</h2>
-    <p>
-      We work with a small number of dealers turning over £1m to £10m. If you want more enquiries from the buyers already looking, we should talk.
-    </p>
-    <a href="/contact" class="button">Book a 20-minute call with Will</a>
+    <div class="section--cta">
+      <h2>Is this right for you?</h2>
+      <p>
+        We work with a small number of dealers turning over £1m to £10m. If you want more enquiries from the buyers already looking, we should talk.
+      </p>
+      <a href="/contact" class="button">Book a 20-minute call with Will</a>
+    </div>
   </section>
 </BaseLayout>
 
@@ -213,8 +215,15 @@ const services = [
     border-top: 2px solid var(--color-border);
   }
 
-  .demand {
-    max-width: 760px;
+  .demand-row {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--space-lg);
+    align-items: stretch;
+  }
+
+  .demand h2 {
+    margin-top: 0;
   }
 
   .demand__list {
@@ -223,6 +232,10 @@ const services = [
   }
 
   .section--cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     background-color: var(--color-forest);
     color: var(--color-stone);
@@ -266,9 +279,14 @@ const services = [
   }
 
   @media (max-width: 800px) {
-    .why {
+    .why,
+    .demand-row {
       grid-template-columns: 1fr;
       gap: var(--space-md);
+    }
+
+    .section--cta {
+      padding: var(--space-lg) var(--space-md);
     }
   }
 
