@@ -63,7 +63,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <h2 class="report__form-heading">Request your free report</h2>
 
         <div id="form-success" class="notice notice--success" role="status" hidden>
-          <strong>Thanks, that's with us.</strong> We'll be in touch with your report.
+          <p class="notice__title">Thank you. Your details have been sent.</p>
+          <p>
+            We've got your request for a free search demand report. We'll review your domain and competitors and be in touch with your report.
+          </p>
+          <p>
+            Need to add anything? Email <a href="mailto:will@digi-business.co.uk">will@digi-business.co.uk</a>.
+          </p>
         </div>
         <div id="form-error" class="notice notice--error" role="alert" hidden>
           <span id="form-error-text">Something went wrong sending your request.</span>
@@ -209,6 +215,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     gap: var(--space-sm);
   }
 
+  .report-form[hidden] {
+    display: none;
+  }
+
   .report-form label,
   .report-form legend {
     display: flex;
@@ -271,6 +281,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .notice[hidden] {
     display: none;
+  }
+
+  .notice p {
+    margin: 0 0 var(--space-xs);
+  }
+
+  .notice p:last-child {
+    margin-bottom: 0;
+  }
+
+  .notice__title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-heading);
   }
 
   .notice--success {
