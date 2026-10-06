@@ -43,26 +43,27 @@ const services = [
     </div>
   </section>
 
-  <section class="section container proof">
-    <div class="proof__card">
-      <p class="proof__value">92%</p>
-      <p class="proof__label">more visitors for a regional leisure vehicle dealer</p>
-    </div>
-    <div class="proof__card">
-      <p class="proof__value"><span data-experience="combined">{combined}</span></p>
-      <p class="proof__label">years combined in the leisure vehicle market</p>
-    </div>
-  </section>
-
   <section class="section container why">
-    <h2>Most agencies learn your market on your money</h2>
-    <p>
-      A generalist agency spends months working out what an MTPLM is and how the show season shapes your year. You pay for that learning curve.
-    </p>
-    <p>
-      Between us, we've worked in this market for <span data-experience="combined">{combined}</span> years. We know the buying cycle, the seasonal peaks and the questions buyers ask before they pick up the phone.
-    </p>
-    <p>That's why we only work with leisure vehicle businesses.</p>
+    <div class="why__text">
+      <h2>Most agencies learn your market on your money</h2>
+      <p>
+        A generalist agency spends months working out what an MTPLM is and how the show season shapes your year. You pay for that learning curve.
+      </p>
+      <p>
+        Between us, we've worked in this market for <span data-experience="combined">{combined}</span> years. We know the buying cycle, the seasonal peaks and the questions buyers ask before they pick up the phone.
+      </p>
+      <p>That's why we only work with leisure vehicle businesses.</p>
+    </div>
+    <div class="why__proof">
+      <div class="proof__card">
+        <p class="proof__value">92%</p>
+        <p class="proof__label">more visitors for a regional leisure vehicle dealer</p>
+      </div>
+      <div class="proof__card">
+        <p class="proof__value"><span data-experience="combined">{combined}</span></p>
+        <p class="proof__label">years combined in the leisure vehicle market</p>
+      </div>
+    </div>
   </section>
 
   <section class="section container practice">
@@ -153,11 +154,21 @@ const services = [
     padding-bottom: var(--space-xl);
   }
 
-  .proof {
+  .why {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--space-lg);
+    align-items: center;
+  }
+
+  .why__text h2 {
+    margin-top: 0;
+  }
+
+  .why__proof {
+    display: grid;
+    grid-template-columns: 1fr;
     gap: var(--space-md);
-    padding-bottom: 0;
   }
 
   .proof__card {
@@ -178,10 +189,6 @@ const services = [
     font-size: 0.95rem;
     color: var(--color-text-muted);
     margin: 0;
-  }
-
-  .why {
-    max-width: 760px;
   }
 
   .practice__client {
@@ -258,9 +265,20 @@ const services = [
     color: #ffffff;
   }
 
-  @media (max-width: 560px) {
-    .proof {
+  @media (max-width: 800px) {
+    .why {
       grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .why__proof {
+      grid-template-columns: 1fr;
+    }
+
+    .proof__value {
+      font-size: 2rem;
     }
   }
 </style>
