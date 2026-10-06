@@ -1,0 +1,322 @@
+---
+export const prerender = true;
+// Save as: src/pages/free-search-demand-report.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Free Search Demand Report for Leisure Vehicle Dealers | Digital Business"
+  description="See what local buyers search for, which searches you show up for, and where competitors win. Free for caravan and motorhome dealers."
+>
+  <section class="hero">
+    <div class="container hero__inner">
+      <p class="eyebrow eyebrow--hero">Free for leisure vehicle dealers</p>
+      <h1 class="hero__heading">Do you know what your buyers are searching for?</h1>
+      <p class="hero__lead">
+        Plenty of dealers guess. We'll pull the data for your area and show you, for free.
+      </p>
+    </div>
+  </section>
+
+  <section class="section container report">
+    <div class="report__copy">
+      <h2>Stop paying for searches nobody makes</h2>
+      <p>
+        UK buyers search for motorhome sales over 9,000 times a month on average. Some of them are in your area, looking at stock like yours right now. The only question is whether they find you or the dealer down the road.
+      </p>
+      <p>
+        Most marketing budgets get spent before anyone checks what buyers actually search for. I believe that's backwards. Look at the demand first, then decide where the money goes.
+      </p>
+
+      <h2>What your free report shows</h2>
+      <ul class="report__list">
+        <li>
+          <strong>What local buyers search for, and when.</strong>
+          The seasonal peaks and the questions buyers ask before they pick up the phone, so you know when to push and when to save your budget.
+        </li>
+        <li>
+          <strong>Which of those searches you show up for.</strong>
+          The gap between the demand in your area and the enquiries you get today.
+        </li>
+        <li>
+          <strong>Where your competitors win and you don't.</strong>
+          The searches sending buyers to the dealer down the road, so you can see where to go after them first.
+        </li>
+      </ul>
+
+      <h2>No sales pitch. Just the data.</h2>
+      <p>The report is free, with no obligation and no hard sell. You get the evidence and you decide what to do with it.</p>
+
+      <h2>How it works</h2>
+      <ol class="report__steps">
+        <li>Tell us your website and up to three competitors.</li>
+        <li>We pull the search data for your area.</li>
+        <li>We send you the report, and talk you through it if you'd like.</li>
+      </ol>
+      <p>
+        Right now you may be guessing where your next buyers come from. After this, you'll know.
+      </p>
+    </div>
+
+    <div class="report__form-wrap">
+      <div class="report__form-card">
+        <h2 class="report__form-heading">Request your free report</h2>
+
+        <div id="form-success" class="notice notice--success" role="status" hidden>
+          <strong>Thanks, that's with us.</strong> We'll be in touch with your report.
+        </div>
+        <div id="form-error" class="notice notice--error" role="alert" hidden>
+          <span id="form-error-text">Something went wrong sending your request.</span>
+          Please try again, or email <a href="mailto:will@digi-business.co.uk">will@digi-business.co.uk</a> directly.
+        </div>
+
+        <form id="report-form" class="report-form" method="POST" action="/api/search-report">
+          <label>
+            Your name
+            <input type="text" name="name" autocomplete="name" required />
+          </label>
+          <label>
+            Email address
+            <input type="email" name="email" autocomplete="email" required />
+          </label>
+          <label>
+            Business name
+            <input type="text" name="business" autocomplete="organization" required />
+          </label>
+          <label>
+            Your domain/URL
+            <input type="text" name="domain" inputmode="url" placeholder="example.co.uk" required />
+          </label>
+
+          <fieldset class="report-form__competitors">
+            <legend>List three competitors</legend>
+            <input type="text" name="competitor1" placeholder="Competitor 1 (name or website)" aria-label="Competitor 1" />
+            <input type="text" name="competitor2" placeholder="Competitor 2 (name or website)" aria-label="Competitor 2" />
+            <input type="text" name="competitor3" placeholder="Competitor 3 (name or website)" aria-label="Competitor 3" />
+          </fieldset>
+
+          <label>
+            Message
+            <textarea name="message" rows="4"></textarea>
+          </label>
+
+          <!-- Honeypot: hidden from people, bots tend to fill it in -->
+          <div class="report-form__hp" aria-hidden="true">
+            <label>
+              Leave this field empty
+              <input type="text" name="website" tabindex="-1" autocomplete="off" />
+            </label>
+          </div>
+
+          <button type="submit" class="button">Send message</button>
+          <p class="report-form__privacy">
+            We only use your details to prepare your report and reply to you. Read our <a href="/privacy-policy">Privacy Policy</a>.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-accent);
+  }
+
+  .hero {
+    background-color: var(--color-forest);
+  }
+
+  .hero__inner {
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-xl);
+  }
+
+  .eyebrow--hero {
+    color: var(--color-moss);
+  }
+
+  .hero__heading {
+    color: var(--color-stone);
+    max-width: 800px;
+  }
+
+  .hero__lead {
+    font-size: 1.15rem;
+    max-width: 640px;
+    color: var(--color-stone);
+  }
+
+  .section {
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-xl);
+  }
+
+  .report {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--space-lg);
+    align-items: start;
+  }
+
+  .report__copy h2 {
+    margin-top: var(--space-lg);
+  }
+
+  .report__copy h2:first-child {
+    margin-top: 0;
+  }
+
+  .report__list,
+  .report__steps {
+    padding-left: 1.25rem;
+    margin: var(--space-sm) 0;
+  }
+
+  .report__list li,
+  .report__steps li {
+    margin-bottom: var(--space-sm);
+  }
+
+  .report__list strong {
+    display: block;
+    color: var(--color-heading);
+  }
+
+  .report__form-wrap {
+    position: sticky;
+    top: var(--space-md);
+  }
+
+  .report__form-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--space-md);
+  }
+
+  .report__form-heading {
+    margin-top: 0;
+  }
+
+  .report-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .report-form label,
+  .report-form legend {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-weight: 700;
+    color: var(--color-forest);
+  }
+
+  .report-form legend {
+    padding: 0;
+    margin-bottom: 0.35rem;
+  }
+
+  .report-form input,
+  .report-form textarea {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    padding: 0.6rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background-color: var(--color-bg, #ffffff);
+    color: var(--color-text);
+    width: 100%;
+  }
+
+  .report-form__competitors {
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .report-form__hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .report-form button {
+    align-self: flex-start;
+  }
+
+  .report-form__privacy {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .notice {
+    border-radius: var(--radius);
+    padding: var(--space-sm);
+    margin-bottom: var(--space-sm);
+    font-size: 0.95rem;
+  }
+
+  .notice[hidden] {
+    display: none;
+  }
+
+  .notice--success {
+    border: 1px solid var(--color-forest);
+    background-color: var(--color-surface);
+    color: var(--color-forest);
+  }
+
+  .notice--error {
+    border: 1px solid var(--color-accent);
+    background-color: var(--color-surface);
+    color: var(--color-forest);
+  }
+
+  @media (max-width: 800px) {
+    .report {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+
+    .report__form-wrap {
+      position: static;
+    }
+  }
+</style>
+
+<script>
+  // Show a confirmation or error message after the form posts and redirects back here
+  const params = new URLSearchParams(window.location.search);
+  const form = document.getElementById('report-form');
+  const success = document.getElementById('form-success');
+  const error = document.getElementById('form-error');
+  const errorText = document.getElementById('form-error-text');
+
+  if (params.get('sent') && success && form) {
+    success.hidden = false;
+    form.hidden = true;
+    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  } else if (params.get('error') && error && errorText) {
+    const messages: Record<string, string> = {
+      missing: 'Please fill in your name, email, business name and domain.',
+      email: 'That email address doesn\'t look right.',
+      send: 'We couldn\'t send your request.',
+    };
+    errorText.textContent = messages[params.get('error') ?? ''] ?? 'Something went wrong sending your request.';
+    error.hidden = false;
+    error.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+</script>
