@@ -1,0 +1,315 @@
+---
+// Save as: src/components/OrganicGrowthChart.astro
+// Case study graphic: monthly organic search sessions for an anonymised client
+// ("Regional Leisure Vehicle Dealer"). Chart is drawn at build time as inline SVG
+// (no chart library); a tiny script adds hover tooltips.
+// Data: Google Analytics 4, Oct 2023 - Sep 2026, pulled 6 Oct 2026 (partial Oct 2026 excluded).
+const data: [string, number][] = [
+  ['Oct 2023', 5281], ['Nov 2023', 5228], ['Dec 2023', 3523],
+  ['Jan 2024', 8094], ['Feb 2024', 8833], ['Mar 2024', 9139], ['Apr 2024', 10250], ['May 2024', 10593], ['Jun 2024', 10022],
+  ['Jul 2024', 10324], ['Aug 2024', 11747], ['Sep 2024', 10414], ['Oct 2024', 8986], ['Nov 2024', 5737], ['Dec 2024', 4416],
+  ['Jan 2025', 9089], ['Feb 2025', 8623], ['Mar 2025', 9564], ['Apr 2025', 10770], ['May 2025', 12071], ['Jun 2025', 10860],
+  ['Jul 2025', 8108], ['Aug 2025', 12528], ['Sep 2025', 9991], ['Oct 2025', 10130], ['Nov 2025', 5687], ['Dec 2025', 4180],
+  ['Jan 2026', 8609], ['Feb 2026', 8514], ['Mar 2026', 11047], ['Apr 2026', 11740], ['May 2026', 10606], ['Jun 2026', 10346],
+  ['Jul 2026', 10048], ['Aug 2026', 14290], ['Sep 2026', 10329],
+];
+const highlight = [0, 24]; // Oct 2023 and Oct 2025: the two like-for-like months compared
+
+const W = 800, H = 300, padL = 52, padR = 14, padT = 16, padB = 38;
+const plotW = W - padL - padR;
+const plotH = H - padT - padB;
+const n = data.length;
+const yMax = 15000;
+
+const x = (i: number) => padL + (n === 1 ? 0 : (i / (n - 1)) * plotW);
+const y = (v: number) => padT + (1 - v / yMax) * plotH;
+const f = (v: number) => v.toFixed(1);
+
+const gridValues = [0, 5000, 10000, 15000];
+const xTicks: [number, string][] = [[0, "Oct '23"], [12, "Oct '24"], [24, "Oct '25"], [35, "Sep '26"]];
+
+const linePath = data.map((d, i) => `${i === 0 ? 'M' : 'L'} ${f(x(i))} ${f(y(d[1]))}`).join(' ');
+const areaPath = `${linePath} L ${f(x(n - 1))} ${f(y(0))} L ${f(x(0))} ${f(y(0))} Z`;
+---
+
+<div class="growth">
+  <p class="growth__eyebrow">Regional Leisure Vehicle Dealer · SEO performance</p>
+  <h3 class="growth__headline">Organic search traffic nearly doubled</h3>
+
+  <div class="growth__figure">
+    <span class="growth__big">+92%</span>
+    <span class="growth__cap">
+      growth in monthly organic search visits since <strong>Digital Business</strong> took over SEO in October 2023
+    </span>
+  </div>
+
+  <div class="growth__range" aria-hidden="true">
+    <div class="growth__pt"><span class="growth__v">5,281</span><span class="growth__l">Oct 2023 · monthly organic</span></div>
+    <span class="growth__arrow">→</span>
+    <div class="growth__pt"><span class="growth__v">10,130</span><span class="growth__l">Oct 2025 · monthly organic</span></div>
+  </div>
+
+  <div class="growth__chart-head">
+    <h4>Monthly organic search sessions</h4>
+    <span class="growth__sub">Oct 2023 - Sep 2026 · Google Analytics 4</span>
+  </div>
+
+  <div class="growth__chartbox" id="growth-chartbox">
+    <svg
+      viewBox={`0 0 ${W} ${H}`}
+      role="img"
+      aria-label="Line chart of monthly organic search sessions from October 2023 to September 2026, climbing from around 5,300 to over 10,000 for most of 2026, peaking near 14,300 in August 2026."
+    >
+      {gridValues.map((g) => (
+        <>
+          <line class="growth__grid" x1={padL} y1={f(y(g))} x2={W - padR} y2={f(y(g))} />
+          <text class="growth__axis" x={padL - 8} y={f(y(g) + 4)} text-anchor="end">{g / 1000}k</text>
+        </>
+      ))}
+      {xTicks.map(([i, label]) => (
+        <text class="growth__axis" x={f(x(i))} y={H - padB + 22} text-anchor="middle">{label}</text>
+      ))}
+      <path class="growth__area" d={areaPath} />
+      <path class="growth__line" d={linePath} />
+      {highlight.map((i) => (
+        <circle class="growth__dot" cx={f(x(i))} cy={f(y(data[i][1]))} r="5.5" />
+      ))}
+      {data.map((d, i) => (
+        <circle
+          class="growth__hit"
+          data-label={d[0]}
+          data-value={d[1].toLocaleString('en-GB')}
+          data-x={f((x(i) / W) * 100)}
+          data-y={f((y(d[1]) / H) * 100)}
+          cx={f(x(i))}
+          cy={f(y(d[1]))}
+          r="14"
+        />
+      ))}
+    </svg>
+    <div class="growth__tip" id="growth-tip"></div>
+  </div>
+
+  <p class="growth__note">
+    <strong>Source:</strong> Google Analytics 4, client property, pulled 6 Oct 2026. Headline compares like-for-like
+    October months (seasonally comparable). Monthly organic sessions have stayed above 10,000 since March 2026,
+    peaking at 14,290 in August 2026, with a seasonal dip each winter.
+  </p>
+</div>
+
+<style>
+  .growth {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: clamp(1.25rem, 4vw, 2.5rem);
+  }
+
+  .growth__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 0 0 1rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  .growth__eyebrow::before {
+    content: '';
+    width: 22px;
+    height: 2px;
+    background: var(--color-accent);
+    border-radius: 2px;
+  }
+
+  .growth__headline {
+    margin: 0;
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    line-height: 1.1;
+  }
+
+  .growth__figure {
+    display: flex;
+    align-items: baseline;
+    gap: 0.9rem;
+    flex-wrap: wrap;
+    margin: 1.25rem 0 0.4rem;
+  }
+
+  .growth__big {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    font-size: clamp(3.5rem, 12vw, 6.5rem);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    color: var(--color-accent);
+  }
+
+  .growth__cap {
+    font-size: 1rem;
+    max-width: 26ch;
+    color: var(--color-text-muted);
+  }
+
+  .growth__cap strong {
+    color: var(--color-heading);
+    font-weight: 600;
+  }
+
+  .growth__range {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin: 1rem 0 0.25rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .growth__pt {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .growth__v {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--color-heading);
+  }
+
+  .growth__l {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+  }
+
+  .growth__arrow {
+    color: var(--color-accent);
+    font-size: 1.25rem;
+  }
+
+  .growth__chart-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin: 2rem 0 0.6rem;
+  }
+
+  .growth__chart-head h4 {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  .growth__sub {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+  }
+
+  .growth__chartbox {
+    position: relative;
+    width: 100%;
+  }
+
+  .growth__chartbox svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  .growth__grid {
+    stroke: var(--color-border);
+    stroke-width: 1;
+  }
+
+  .growth__axis {
+    font-size: 11px;
+    fill: var(--color-text-muted);
+    font-family: var(--font-body);
+  }
+
+  .growth__area {
+    fill: color-mix(in srgb, var(--color-accent) 12%, transparent);
+  }
+
+  .growth__line {
+    fill: none;
+    stroke: var(--color-accent);
+    stroke-width: 2;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+  }
+
+  .growth__dot {
+    fill: var(--color-accent);
+    stroke: var(--color-surface);
+    stroke-width: 2.5;
+  }
+
+  .growth__hit {
+    fill: transparent;
+    cursor: pointer;
+  }
+
+  .growth__tip {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%, -100%);
+    background: var(--color-forest);
+    color: var(--color-stone);
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 6px 9px;
+    border-radius: 7px;
+    white-space: nowrap;
+    transition: opacity 0.08s;
+    font-variant-numeric: tabular-nums;
+    z-index: 3;
+  }
+
+  .growth__note {
+    margin: 1.5rem 0 0;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+  }
+
+  .growth__note strong {
+    color: var(--color-heading);
+  }
+
+  @media (max-width: 420px) {
+    .growth__cap {
+      max-width: none;
+    }
+  }
+</style>
+
+<script>
+  const box = document.getElementById('growth-chartbox');
+  const tip = document.getElementById('growth-tip');
+
+  if (box && tip) {
+    box.querySelectorAll<SVGCircleElement>('.growth__hit').forEach((hit) => {
+      const show = () => {
+        tip.innerHTML = `<b>${hit.dataset.value}</b> · ${hit.dataset.label}`;
+        tip.style.left = `${hit.dataset.x}%`;
+        tip.style.top = `calc(${hit.dataset.y}% - 12px)`;
+        tip.style.opacity = '1';
+      };
+      hit.addEventListener('mouseenter', show);
+      hit.addEventListener('mousemove', show);
+      hit.addEventListener('focus', show);
+      hit.addEventListener('mouseleave', () => (tip.style.opacity = '0'));
+    });
+  }
+</script>
