@@ -2,13 +2,11 @@
 image: ./motorhome-and-caravan-show-leads.webp
 title: "Not everyone orders at the show. Here's how to catch the ones who don't"
 description: "Most Motorhome and Caravan Show visitors go home to research before they buy. See how dealers catch them after the show. Get your free report."
-pubDate: 2026-10-08
+pubDate: 2026-10-07
 author: "Will Hawkins"
-tags: ["SEO for caravan dealers, motorhome and caravan show, NEC show marketing, dealer marketing, leisure vehicle marketing, caravan dealership SEO, show leads, lead generation for dealers, local SEO, search demand"]
+tags: ["SEO for caravan dealers", "motorhome and caravan show", "NEC show marketing", "dealer marketing", "leisure vehicle marketing", "caravan dealership SEO", "show leads", "lead generation for dealers", "local SEO", "search demand"]
 draft: false
 ---
-
-# Not everyone orders at the show. Here's how to catch the ones who don't
 
 Nearly 96,000 people came through the Motorhome and Caravan Show at the NEC last October. Most of them left without placing an order.
 
@@ -42,7 +40,7 @@ Visitors carry on searching for days and weeks after, looking up the vans they s
 
 Miss the window and you wait months for the next one. The dealers who get found in it pick up the buyers. The ones who wait until spring watch them go elsewhere.
 
-Want to see when buyers in your area start searching, not just the national picture? Get your free Search Demand Report.
+Want to see when buyers in your area start searching, not just the national picture? [Get your free Search Demand Report](/free-search-demand-report).
 
 ## Plenty order on the stand. Many more go home to think
 
@@ -60,7 +58,7 @@ One exhibitor put it well after last year's show. PJ Outdoors noted a high level
 
 So the show starts the journey. Your website finishes it, for everyone who does not order on the day.
 
-Not sure what your buyers look for once they leave the hall? The free Search Demand Report shows you.
+Not sure what your buyers look for once they leave the hall? The [free Search Demand Report](/free-search-demand-report) shows you.
 
 ## The six weeks after the show decide your return
 
@@ -76,7 +74,7 @@ Here is the catch. If you are not visible while all that research is happening, 
 
 By the time they are ready to walk back onto a forecourt, the decision is half made. You want to be the dealer they already trust, not the one they never found.
 
-See when demand in your area picks back up after the show. Get your free Search Demand Report.
+See when demand in your area picks back up after the show. [Get your free Search Demand Report](/free-search-demand-report).
 
 ## What your website needs ready before 13 October
 
@@ -120,7 +118,7 @@ Finance matters here too. Plenty of buyers want the monthly cost before they com
 
 One word of care. Finance is regulated, so keep the page to marketing, give no advice, and get the wording checked against FCA rules before it goes live.
 
-Want to know which of these pages your buyers reach first? The free Search Demand Report shows where you turn up, and where you do not.
+Want to know which of these pages your buyers reach first? The [free Search Demand Report](/free-search-demand-report) shows where you turn up, and where you do not.
 
 ## After the show: a follow-up that is not a big project
 
@@ -148,11 +146,11 @@ The national picture is clear. The spike is real, and most of your buyers resear
 
 But demand is not the same in every county. The timing and the search terms shift depending on where you are.
 
-That is what our free Search Demand Report shows you. When buyers near you start searching, what they look for, and who is catching them now.
+That is what our [free Search Demand Report](/free-search-demand-report) shows you. When buyers near you start searching, what they look for, and who is catching them now.
 
 It is built from the same data behind this post, broken down to roughly a 50-mile area around your dealership.
 
-Get your free Search Demand Report and see your own patch before the next spike.
+[Get your free Search Demand Report](/free-search-demand-report) and see your own patch before the next spike.
 
 ## The quiet weeks that used to follow the show
 
@@ -164,7 +162,7 @@ While other dealers wait for spring, you are booking calls and taking orders thr
 
 That is what being ready for the Motorhome and Caravan Show looks like.
 
-See your own patch before the next spike. Get your free Search Demand Report.
+See your own patch before the next spike. [Get your free Search Demand Report](/free-search-demand-report).
 
 ## Frequently asked questions
 
