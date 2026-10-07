@@ -218,8 +218,21 @@ const { combined } = getExperienceYears();
     align-items: stretch;
   }
 
+  /* Both columns share the same top and bottom padding, and each pushes its
+     button to the bottom, so the two buttons sit on the same horizontal line. */
+  .demand {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-xl) 0;
+  }
+
   .demand h2 {
     margin-top: 0;
+  }
+
+  .demand .button {
+    margin-top: auto;
+    align-self: flex-start;
   }
 
   .demand__list {
@@ -231,7 +244,7 @@ const { combined } = getExperienceYears();
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     text-align: center;
     background-color: var(--color-forest);
     color: var(--color-stone);
@@ -241,6 +254,11 @@ const { combined } = getExperienceYears();
 
   .section--cta h2 {
     color: var(--color-stone);
+    margin-top: 0;
+  }
+
+  .section--cta .button {
+    margin-top: auto;
   }
 
   .button--outline {
@@ -283,6 +301,15 @@ const { combined } = getExperienceYears();
 
     .section--cta {
       padding: var(--space-lg) var(--space-md);
+    }
+
+    .demand {
+      padding: 0;
+    }
+
+    .demand .button,
+    .section--cta .button {
+      margin-top: var(--space-sm);
     }
   }
 
