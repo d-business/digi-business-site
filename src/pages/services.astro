@@ -2,7 +2,7 @@
 export const prerender = true;
 // Save as: src/pages/services.astro
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { services } from '../lib/services.js';
+import { serviceDetails } from '../lib/services.js';
 
 const engagementOptions = [
   {
@@ -38,19 +38,6 @@ const engagementOptions = [
   </section>
 
   <section class="section container">
-    <p class="eyebrow">Our services</p>
-    <h2>What we do</h2>
-    <div class="services-grid">
-      {services.map((service) => (
-        <div class="service-card">
-          <h3>{service.title}</h3>
-          <p>{service.description}</p>
-        </div>
-      ))}
-    </div>
-  </section>
-
-  <section class="section container">
     <p class="eyebrow">Engagement options</p>
     <h2>How we work together</h2>
     <p>
@@ -69,6 +56,24 @@ const engagementOptions = [
 
     <div class="services-cta">
       <p class="services-cta__prompt">Ready to talk about your project?</p>
+      <a href="/contact" class="button">Book an intro call</a>
+    </div>
+  </section>
+
+  <section class="section container">
+    <p class="eyebrow">Our services</p>
+    <h2>What we do</h2>
+    <div class="services-grid">
+      {serviceDetails.map((service) => (
+        <div class="service-card">
+          <h3>{service.title}</h3>
+          <p>{service.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="services-cta">
+      <p class="services-cta__prompt">Not sure which service you need first?</p>
       <a href="/contact" class="button">Book an intro call</a>
     </div>
   </section>
