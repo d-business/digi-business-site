@@ -4,25 +4,9 @@ export const prerender = true;
 import BaseLayout from '../layouts/BaseLayout.astro';
 import OrganicGrowthChart from '../components/OrganicGrowthChart.astro';
 import { getExperienceYears } from '../lib/experience.js';
+import { services } from '../lib/services.js';
 
 const { combined } = getExperienceYears();
-
-const services = [
-  {
-    title: 'SEO and AI search',
-    description:
-      'Get your stock pages, used listings and dealership found on Google, Bing and AI assistants like ChatGPT.',
-  },
-  {
-    title: 'Paid media',
-    description: 'Google Ads and Meta campaigns judged on cost per enquiry, not clicks.',
-  },
-  {
-    title: 'Reporting and automation',
-    description:
-      'One clear monthly report showing what drove enquiries and sales. Automation that cuts the repetitive admin, so your team spends time selling.',
-  },
-];
 ---
 
 <BaseLayout
@@ -205,9 +189,21 @@ const services = [
 
   .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: var(--space-md);
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg) var(--space-md);
     margin: var(--space-md) 0;
+  }
+
+  @media (max-width: 900px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   .service-card {

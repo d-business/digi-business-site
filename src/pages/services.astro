@@ -2,6 +2,7 @@
 export const prerender = true;
 // Save as: src/pages/services.astro
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { services } from '../lib/services.js';
 
 const engagementOptions = [
   {
@@ -33,6 +34,19 @@ const engagementOptions = [
     <div class="container hero__inner">
       <p class="eyebrow eyebrow--hero">What we offer</p>
       <h1 class="hero__heading">Services built for outdoor leisure businesses</h1>
+    </div>
+  </section>
+
+  <section class="section container">
+    <p class="eyebrow">Our services</p>
+    <h2>What we do</h2>
+    <div class="services-grid">
+      {services.map((service) => (
+        <div class="service-card">
+          <h3>{service.title}</h3>
+          <p>{service.description}</p>
+        </div>
+      ))}
     </div>
   </section>
 
@@ -90,6 +104,30 @@ const engagementOptions = [
   .section {
     padding-top: var(--space-xl);
     padding-bottom: var(--space-xl);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg) var(--space-md);
+    margin: var(--space-md) 0;
+  }
+
+  .service-card {
+    padding-top: var(--space-sm);
+    border-top: 2px solid var(--color-border);
+  }
+
+  @media (max-width: 900px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   .tiers {
