@@ -54,7 +54,7 @@ export const POST: APIRoute = async ({ request, redirect }) => {
       `Name: ${name}`,
       `Email: ${email}`,
       `Business: ${business}`,
-      `Domain/URL: ${domain}`,
+      `Website: ${domain}`,
       '',
       'Competitors:',
       ...(competitors.length ? competitors.map((c, i) => `${i + 1}. ${c}`) : ['(none given)']),

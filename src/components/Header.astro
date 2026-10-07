@@ -25,7 +25,10 @@ const currentPath = Astro.url.pathname;
         ))}
       </ul>
 
-      <a href="/contact" class="button button--small site-header__cta">Talk to us</a>
+      <a href="/contact" class="button button--small site-header__cta">
+        <span class="site-header__cta-long">Book a 20-minute call with Will</span>
+        <span class="site-header__cta-short">Book a call</span>
+      </a>
 
       <button
         type="button"
@@ -119,6 +122,21 @@ const currentPath = Astro.url.pathname;
     color: #ffffff !important;
     white-space: nowrap;
     flex-shrink: 0;
+  }
+
+  /* Full button label on wide screens, a short one when space is tight */
+  .site-header__cta-short {
+    display: none;
+  }
+
+  @media (max-width: 1000px) {
+    .site-header__cta-long {
+      display: none;
+    }
+
+    .site-header__cta-short {
+      display: inline;
+    }
   }
 
   .site-header__toggle {

@@ -65,7 +65,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <div id="form-success" class="notice notice--success" role="status" hidden>
           <p class="notice__title">Thank you. Your details have been sent.</p>
           <p>
-            We've got your request for a free search demand report. We'll review your domain and competitors and be in touch with your report.
+            We've got your request for a free search demand report. We'll review your website and competitors and be in touch with your report.
           </p>
           <p>
             Need to add anything? Email <a href="mailto:will@digi-business.co.uk">will@digi-business.co.uk</a>.
@@ -90,19 +90,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <input type="text" name="business" autocomplete="organization" required />
           </label>
           <label>
-            Your domain/URL
+            Your website
             <input type="text" name="domain" inputmode="url" placeholder="example.co.uk" required />
           </label>
 
           <fieldset class="report-form__competitors">
-            <legend>List three competitors</legend>
+            <legend>Up to three competitors</legend>
             <input type="text" name="competitor1" placeholder="Competitor 1 (name or website)" aria-label="Competitor 1" />
             <input type="text" name="competitor2" placeholder="Competitor 2 (name or website)" aria-label="Competitor 2" />
             <input type="text" name="competitor3" placeholder="Competitor 3 (name or website)" aria-label="Competitor 3" />
           </fieldset>
 
           <label>
-            Message
+            Message (optional)
             <textarea name="message" rows="4"></textarea>
           </label>
 
@@ -114,7 +114,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </label>
           </div>
 
-          <button type="submit" class="button">Send message</button>
+          <button type="submit" class="button">Send me my report</button>
           <p class="report-form__privacy">
             We only use your details to prepare your report and reply to you. Read our <a href="/privacy-policy">Privacy Policy</a>.
           </p>
@@ -336,7 +336,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     success.scrollIntoView({ behavior: 'smooth', block: 'center' });
   } else if (params.get('error') && error && errorText) {
     const messages: Record<string, string> = {
-      missing: 'Please fill in your name, email, business name and domain.',
+      missing: 'Please fill in your name, email, business name and website.',
       email: 'That email address doesn\'t look right.',
       send: 'We couldn\'t send your request.',
     };
