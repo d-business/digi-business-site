@@ -1,6 +1,7 @@
 ---
 image: ./motorhome-and-caravan-show-leads.webp
 title: "Not everyone orders at the show. Here's how to catch the ones who don't"
+seoTitle: "Motorhome Show Leads: Win the Late Buyers"
 description: "Most Motorhome and Caravan Show visitors go home to research before they buy. See how dealers catch them after the show. Get your free report."
 pubDate: 2026-10-07
 author: "Will Hawkins"
