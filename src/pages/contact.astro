@@ -21,11 +21,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <p>
       If you run an outdoor leisure vehicle business turning over £1m to £10m and want a specialist digital growth partner, we would like to hear from you.
     </p>
-    <p>
-      Email us directly: <a href="mailto:will@digi-business.co.uk">will@digi-business.co.uk</a>
-    </p>
+    <div class="contact-options">
+      <p>
+        <a href="https://calendar.app.google/WxCo5P15mwe5tAct8" class="button" target="_blank" rel="noopener">Book a 20-minute call with Will</a>
+      </p>
+      <p>
+        Or email us directly: <a href="mailto:will@digi-business.co.uk">will@digi-business.co.uk</a>
+      </p>
+    </div>
 
-    <h3>Send us a message</h3>
+    <h3>Or send us a message</h3>
     <!--
       NOTE: action="/api/contact" is a placeholder. This needs a live endpoint
       before the form works — see task #7 (deploy) for the Cloudflare Workers
@@ -83,6 +88,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .section {
     padding-top: var(--space-xl);
     padding-bottom: var(--space-xl);
+  }
+
+  .contact-options p {
+    margin-bottom: var(--space-sm);
   }
 
   .contact-form {
