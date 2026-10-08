@@ -196,7 +196,7 @@ None of this makes a dealership website expensive to work on by accident. It's e
 
 An agency that treats a caravan dealership like a car dealership, or a car dealership like any other local business, will underquote the job and then underdeliver on it.
 
-*[Internal link once live: SEO for Caravan and Motorhome Dealerships: The Complete Guide]*
+For the full picture on how this works in your market, read our [complete guide to SEO for caravan and motorhome dealerships](/blog/seo-for-caravan-motorhome-dealerships-guide).
 
 
 ## The real cost of cheap SEO

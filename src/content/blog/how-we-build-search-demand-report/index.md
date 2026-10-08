@@ -72,8 +72,6 @@ They're directional, not precise to the last search. For spotting what buyers wa
 
 We pull fresh numbers each time, and note the date we pulled them. Search demand moves with the seasons, so a report built on last year's figures would quietly mislead you.
 
-Want to see the data in action? Our post on [how caravan searches fall 70% by December](#) is built from the same source.
-
 ## How we draw your area
 
 "Your area" needs a definition, so here's ours.
@@ -126,7 +124,7 @@ It costs nothing. No card, no tie-in, no small print.
 
 You fill in one short form: your name, your business, your website, and up to three competitors if you have them in mind. We do the rest.
 
-We build your snapshot, Will reads every one before it goes out, and if it's useful, you can book a 20-minute call to talk it through. If it's not, you keep the report and we leave it there.
+We build your snapshot, Will reads every one before it goes out, and if it's useful, you can [book a 20-minute call](https://calendar.app.google/WxCo5P15mwe5tAct8) to talk it through. If it's not, you keep the report and we leave it there.
 
 So why give this away?
 
@@ -148,7 +146,7 @@ Your business name, your website, and up to three competitors if you have them i
 
 ### How long does it take?
 
-One working day. We build your report and get it to you within a working day of your request.
+Very soon. We build your report as soon as your request lands, and Will checks it before it reaches you.
 
 ### Is my data safe?
 
