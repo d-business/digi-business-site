@@ -3,7 +3,7 @@ image: ./how-we-build-search-demand-report.webp
 title: "How we build your free Search Demand Report (and what it can't tell you)"
 seoTitle: "How Our Free Search Demand Report Works"
 description: "See how we build your free Search Demand Report: where the data comes from, how we map your area, and what it can't tell you. Request yours."
-pubDate: 2026-10-14
+pubDate: 2026-10-08
 author: "Will Hawkins"
 tags: ["SEO", "Dealer marketing"]
 draft: false
