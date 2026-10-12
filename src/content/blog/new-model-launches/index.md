@@ -6,7 +6,7 @@ description: "Win the 2027 model launches: buyers search by model, not new carav
 pubDate: 2026-10-12
 author: "Will Hawkins"
 tags: ["SEO", "Caravan & Motorhome Dealers", "Content Marketing"]
-draft: true
+draft: false
 ---
 
 Nobody searches "new caravans 2027". That's exactly why you're losing the 2027 model launches.
