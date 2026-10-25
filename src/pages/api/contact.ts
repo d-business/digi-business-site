@@ -22,6 +22,27 @@ export const POST: APIRoute = async ({ request, locals, redirect }) => {
     return redirect('/contact?sent=true', 303);
   }
 
+  // Cloudflare Turnstile: verify the bot-check token with Cloudflare.
+  const turnstileToken = String(form.get('cf-turnstile-response') ?? '');
+  const turnstileVerify = await fetch(
+    'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+    {
+      method: 'POST',
+      headers: { 'content-type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        secret: (env as any).TURNSTILE_SECRET_KEY,
+        response: turnstileToken,
+        remoteip: request.headers.get('CF-Connecting-IP') ?? '',
+      }),
+    }
+  );
+  const turnstileOutcome = (await turnstileVerify.json()) as { success: boolean };
+  if (!turnstileOutcome.success) {
+    return new Response('Bot verification failed. Please go back and try again.', {
+      status: 400,
+    });
+  }
+
   const name = String(form.get('name') ?? '').trim();
   const email = String(form.get('email') ?? '').trim();
   const business = String(form.get('business') ?? '').trim();
