@@ -20,8 +20,27 @@ export const POST: APIRoute = async ({ request, redirect }) => {
   const form = await request.formData();
 
   // Honeypot: real visitors never see or fill this field. Bots often do.
-  if (clean(form.get('website'), 200)) {
+    if (clean(form.get('website'), 200)) {
     return redirect(`${PAGE}?sent=true`, 303);
+  }
+
+  // Cloudflare Turnstile: verify the bot-check token with Cloudflare.
+  const turnstileToken = String(form.get('cf-turnstile-response') ?? '');
+  const turnstileVerify = await fetch(
+    'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+    {
+      method: 'POST',
+      headers: { 'content-type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        secret: (env as any).TURNSTILE_SECRET_KEY,
+        response: turnstileToken,
+        remoteip: request.headers.get('CF-Connecting-IP') ?? '',
+      }),
+    }
+  );
+  const turnstileOutcome = (await turnstileVerify.json()) as { success: boolean };
+  if (!turnstileOutcome.success) {
+    return redirect(`${PAGE}?error=bot`, 303);
   }
 
   const name = oneLine(clean(form.get('name'), 120));
