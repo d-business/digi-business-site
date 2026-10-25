@@ -14,7 +14,13 @@ import { createMimeMessage, Mailbox } from 'mimetext';
 export const prerender = false;
 
 export const POST: APIRoute = async ({ request, locals, redirect }) => {
-  const form = await request.formData();
+    const form = await request.formData();
+
+  // Honeypot: real visitors never see or fill this field. Bots often do.
+  // Pretend success so the bot doesn't retry.
+  if (String(form.get('website') ?? '').trim()) {
+    return redirect('/contact?sent=true', 303);
+  }
 
   const name = String(form.get('name') ?? '').trim();
   const email = String(form.get('email') ?? '').trim();
