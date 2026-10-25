@@ -36,8 +36,18 @@ export const POST: APIRoute = async ({ request, locals, redirect }) => {
       }),
     }
   );
-  const turnstileOutcome = (await turnstileVerify.json()) as { success: boolean };
+   const turnstileOutcome = (await turnstileVerify.json()) as {
+    success: boolean;
+    'error-codes'?: string[];
+  };
   if (!turnstileOutcome.success) {
+    console.error(
+      'Turnstile failed:',
+      JSON.stringify(turnstileOutcome),
+      '| secretPresent:', !!(env as any).TURNSTILE_SECRET_KEY,
+      '| secretLen:', String((env as any).TURNSTILE_SECRET_KEY ?? '').length,
+      '| tokenLen:', turnstileToken.length
+    );
     return new Response('Bot verification failed. Please go back and try again.', {
       status: 400,
     });
