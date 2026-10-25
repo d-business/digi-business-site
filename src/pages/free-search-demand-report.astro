@@ -106,13 +106,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <textarea name="message" rows="4"></textarea>
           </label>
 
-          <!-- Honeypot: hidden from people, bots tend to fill it in -->
+                    <!-- Honeypot: hidden from people, bots tend to fill it in -->
           <div class="report-form__hp" aria-hidden="true">
             <label>
               Leave this field empty
               <input type="text" name="website" tabindex="-1" autocomplete="off" />
             </label>
           </div>
+
+          <!-- Cloudflare Turnstile: invisible bot check -->
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAFlntXQoj006PovR"></div>
 
           <button type="submit" class="button">Send me my report</button>
           <p class="report-form__privacy">
@@ -322,6 +325,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 </style>
 
+<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
 <script>
   // Show a confirmation or error message after the form posts and redirects back here
   const params = new URLSearchParams(window.location.search);
@@ -338,7 +343,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     const messages: Record<string, string> = {
       missing: 'Please fill in your name, email, business name and website.',
       email: 'That email address doesn\'t look right.',
-      send: 'We couldn\'t send your request.',
+            send: 'We couldn\'t send your request.',
+      bot: 'Please complete the anti-spam check and try again.',
     };
     errorText.textContent = messages[params.get('error') ?? ''] ?? 'Something went wrong sending your request.';
     error.hidden = false;
