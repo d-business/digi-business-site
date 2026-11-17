@@ -35,8 +35,6 @@ Here is the shape of it. Searches for caravans for sale in the UK sit at roughly
 
 Then January arrives and they jump back to 49,500.
 
-![Line chart of UK monthly Google searches for "caravans for sale", November 2025 to October 2026. Demand peaks at 90,500 a month in summer, falls to a trough of 27,100 in December (down 70%), then rebounds to 49,500 in January (up 83%).](./caravan-winter-search-gap.webp)
-
 Said plainly, so there is no doubt about the number: searches for caravans for sale fall roughly 70% from the summer peak to December, then rebound more than 80% in January.
 
 This is not a caravan quirk. The whole category moves together:
