@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="1200" height="675" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="90" y="52" font-size="30" font-weight="700" fill="#0f172a">UK monthly searches for &#8220;caravans for sale&#8221;</text>
+  <text x="90" y="82" font-size="18" fill="#64748b">Google search volume, United Kingdom &#183; Nov 2025 to Oct 2026</text>
+
+  <!-- Winter-gap band (Nov to Jan) -->
+  <rect x="90" y="110" width="192.7" height="495" fill="#f59e0b" fill-opacity="0.07"/>
+  <text x="186" y="104" font-size="14" font-weight="600" fill="#b45309" text-anchor="middle">The winter gap</text>
+
+  <!-- Gridlines + Y labels -->
+  <g stroke="#e2e8f0" stroke-width="1">
+    <line x1="90" y1="110" x2="1150" y2="110"/>
+    <line x1="90" y1="233.75" x2="1150" y2="233.75"/>
+    <line x1="90" y1="357.5" x2="1150" y2="357.5"/>
+    <line x1="90" y1="481.25" x2="1150" y2="481.25"/>
+    <line x1="90" y1="605" x2="1150" y2="605" stroke="#cbd5e1"/>
+  </g>
+  <g font-size="15" fill="#64748b" text-anchor="end">
+    <text x="78" y="115">100k</text>
+    <text x="78" y="238.75">75k</text>
+    <text x="78" y="362.5">50k</text>
+    <text x="78" y="486.25">25k</text>
+    <text x="78" y="610">0</text>
+  </g>
+
+  <!-- X labels -->
+  <g font-size="15" fill="#64748b" text-anchor="middle">
+    <text x="90" y="632">Nov</text>
+    <text x="186.4" y="632">Dec</text>
+    <text x="282.7" y="632">Jan</text>
+    <text x="379.1" y="632">Feb</text>
+    <text x="475.5" y="632">Mar</text>
+    <text x="571.8" y="632">Apr</text>
+    <text x="668.2" y="632">May</text>
+    <text x="764.5" y="632">Jun</text>
+    <text x="860.9" y="632">Jul</text>
+    <text x="957.3" y="632">Aug</text>
+    <text x="1053.6" y="632">Sep</text>
+    <text x="1150" y="632">Oct</text>
+  </g>
+  <g font-size="12" fill="#94a3b8" text-anchor="middle">
+    <text x="138" y="652">2025</text>
+    <text x="716" y="652">2026</text>
+  </g>
+
+  <!-- Area fill -->
+  <path d="M90,441.2 L186.4,470.9 L282.7,360.0 L379.1,360.0 L475.5,238.7 L571.8,157.0 L668.2,157.0 L764.5,238.7 L860.9,157.0 L957.3,157.0 L1053.6,305.5 L1150,360.0 L1150,605 L90,605 Z" fill="#1d6fb8" fill-opacity="0.10"/>
+
+  <!-- Line -->
+  <path d="M90,441.2 L186.4,470.9 L282.7,360.0 L379.1,360.0 L475.5,238.7 L571.8,157.0 L668.2,157.0 L764.5,238.7 L860.9,157.0 L957.3,157.0 L1053.6,305.5 L1150,360.0" fill="none" stroke="#1d6fb8" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+
+  <!-- Small markers -->
+  <g fill="#1d6fb8">
+    <circle cx="90" cy="441.2" r="3.5"/>
+    <circle cx="379.1" cy="360.0" r="3.5"/>
+    <circle cx="475.5" cy="238.7" r="3.5"/>
+    <circle cx="571.8" cy="157.0" r="3.5"/>
+    <circle cx="668.2" cy="157.0" r="3.5"/>
+    <circle cx="764.5" cy="238.7" r="3.5"/>
+    <circle cx="957.3" cy="157.0" r="3.5"/>
+    <circle cx="1053.6" cy="305.5" r="3.5"/>
+    <circle cx="1150" cy="360.0" r="3.5"/>
+  </g>
+
+  <!-- Emphasis markers: peak, trough, rebound -->
+  <g fill="#1d6fb8" stroke="#ffffff" stroke-width="2.5">
+    <circle cx="860.9" cy="157.0" r="7"/>
+    <circle cx="186.4" cy="470.9" r="7"/>
+    <circle cx="282.7" cy="360.0" r="7"/>
+  </g>
+
+  <!-- Peak callout -->
+  <text x="716" y="138" font-size="16" font-weight="600" fill="#0f172a" text-anchor="middle">Summer peak &#8212; 90,500 a month</text>
+
+  <!-- Trough callout -->
+  <line x1="186.4" y1="478" x2="186.4" y2="520" stroke="#b45309" stroke-width="1" stroke-dasharray="3 3"/>
+  <text x="186.4" y="540" font-size="17" font-weight="700" fill="#0f172a" text-anchor="middle">December: 27,100</text>
+  <text x="186.4" y="562" font-size="15" font-weight="600" fill="#b45309" text-anchor="middle">&#8722;70% from the peak</text>
+
+  <!-- Rebound callout -->
+  <line x1="282.7" y1="368" x2="330" y2="408" stroke="#15803d" stroke-width="1" stroke-dasharray="3 3"/>
+  <text x="340" y="414" font-size="17" font-weight="700" fill="#0f172a">January: 49,500</text>
+  <text x="340" y="436" font-size="15" font-weight="600" fill="#15803d">+83% rebound</text>
+
+  <!-- Source -->
+  <text x="90" y="668" font-size="12" fill="#94a3b8">Source: DataForSEO (Google Ads, UK), 12 months to Oct 2026. Digital Business.</text>
+</svg>
