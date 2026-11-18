@@ -1,7 +1,7 @@
 ---
 image: ./caravan-winter-search-gap.webp
 title: "Caravan searches fall 70% by December. What smart dealers do in the gap"
-# seoTitle: "Caravan Searches Fall 70% by December: What Dealers Do"  # <- tighter SERP title (54 chars). Needs a seoTitle field plus template support. See 2027-launches note.
+seoTitle: "Caravan Searches Fall 70% by December"
 description: "UK caravan searches drop around 70% from summer to December, then rebound 80%+ in January. Here's what the smartest dealers do in the quiet months."
 pubDate: 2026-11-17
 author: "Will Hawkins"
